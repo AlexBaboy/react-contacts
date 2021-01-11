@@ -23,8 +23,6 @@ export const Contacts = () => {
     const contacts = useContacts([])
     const {isLoading, isError, data} = contacts
 
-
-
     return (
         <Container className={classes.root}>
             <Grid container spacing={3}>

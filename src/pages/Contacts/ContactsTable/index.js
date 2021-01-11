@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import React from "react";
 import Avatar from '@material-ui/core/Avatar';
 import {Typography} from "@material-ui/core";
-
+import {CopyToClipboard} from "../../../components/CopyToClipboard";
 
 const useStyles = makeStyles({
     table: {
@@ -49,8 +49,10 @@ export const ContactsTable = ({data}) => {
                                 <Typography>{format(parseISO(contact.dob.date), 'MM/dd/yyyy')}</Typography>
                                 <Typography>{contact.dob.age} years</Typography>
                             </TableCell>
+                            <TableCell>
+                                <CopyToClipboard text={contact.email} />
+                            </TableCell>
                             <TableCell>{contact.phone}</TableCell>
-                            <TableCell>{contact.email}</TableCell>
                             <TableCell>5</TableCell>
                             <TableCell>6</TableCell>
                         </TableRow>
