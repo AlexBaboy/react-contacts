@@ -30,6 +30,10 @@ export const useContacts = () => {
             }
         }
         getContacts()
+
+        return ()=> {
+        }
+
     },[])
 
     return {

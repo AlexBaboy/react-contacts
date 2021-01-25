@@ -13,6 +13,7 @@ import React from "react";
 import Avatar from '@material-ui/core/Avatar';
 import {Typography} from "@material-ui/core";
 import {CopyToClipboard} from "../../../components/CopyToClipboard";
+import {NATIONALITIES_HUMAN_NAME} from "../../../constants/nationalities";
 
 const useStyles = makeStyles({
     table: {
@@ -25,7 +26,7 @@ export const ContactsTable = ({data}) => {
     const classes = useStyles();
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} data-testid="table-container">
             <Table className={classes.table} aria-label="contacts table">
                 <TableHead>
                     <TableRow>
@@ -52,9 +53,20 @@ export const ContactsTable = ({data}) => {
                             <TableCell>
                                 <CopyToClipboard text={contact.email} />
                             </TableCell>
-                            <TableCell>{contact.phone}</TableCell>
-                            <TableCell>5</TableCell>
-                            <TableCell>6</TableCell>
+                            <TableCell>
+                                <CopyToClipboard text={contact.phone} />
+                            </TableCell>
+                            <TableCell>
+                                <CopyToClipboard text={"/" + contact.location.country + "/"}></CopyToClipboard>
+                                <Typography>
+                                    {contact.location.city}, {" "}
+                                    {contact.location.street.name}{" "}
+                                    {contact.location.street.number}
+                                </Typography>
+                            </TableCell>
+                            <TableCell>
+                                {NATIONALITIES_HUMAN_NAME[contact.nat]}
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

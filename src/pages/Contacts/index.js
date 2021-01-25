@@ -4,6 +4,11 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import {useContacts} from "./useContacts";
 import Typography from "@material-ui/core/Typography";
 import {ContactsTable} from "./ContactsTable";
+import CircularProgress from '@material-ui/core/CircularProgress';
+import {Box} from "@material-ui/core";
+import {ToggleDataViewMode} from "./ToggleDataViewMode";
+import {DATA_VIEW_MODES} from "./constants";
+import {useDataViewMode} from "./useDataViewMode";
 
 const useStyles = makeStyles ((theme) =>
     createStyles({
@@ -16,26 +21,36 @@ const useStyles = makeStyles ((theme) =>
     })
 )
 
+
+
 export const Contacts = () => {
 
     const classes = useStyles()
 
     const contacts = useContacts([])
     const {isLoading, isError, data} = contacts
+    const [dataViewMode, setDataViewMode] = useDataViewMode()
 
     return (
         <Container className={classes.root}>
             <Grid container spacing={3}>
                 <Grid item xs={12} className={classes.headContainer}>
-                    <Typography variant="h3" component="h1">
-                    Contacts</Typography>
+                    <Box display="flex" justifyContent="space-between">
+                        <Typography variant="h4" component="h1">Contacts</Typography>
+                        <ToggleDataViewMode dataViewMode={dataViewMode} setDataViewMode={setDataViewMode} />
+                    </Box>
                 </Grid>
                 <Grid item xs={12}>
+
                     {(() => {
-                        if (isLoading) return <div>Loading...</div>
+
+                        if (isLoading) return <CircularProgress data-testid="contacts-loader">Loading...</CircularProgress>
                         if (isError) return <div>Error...</div>
 
-                        return <ContactsTable data={data} />
+                        if (dataViewMode === DATA_VIEW_MODES.TABLE) return <ContactsTable data={data} />
+                        if (dataViewMode === DATA_VIEW_MODES.GRID) return "grid"
+                        return null
+
                     })()}
                 </Grid>
             </Grid>
