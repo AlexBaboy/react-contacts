@@ -1,4 +1,4 @@
-import { format, compareAsc } from 'date-fns'
+import { format } from 'date-fns'
 import parseISO from 'date-fns/parseISO'
 
 import { makeStyles } from '@material-ui/core/styles';

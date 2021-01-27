@@ -11,6 +11,11 @@ export const useDataViewMode = () => {
 
     useEffect(()=> {
         localStorage.setItem("dataViewMode", dataViewMode.toString())
+
+        return () => {
+
+        }
+
     }, [dataViewMode])
 
     return [dataViewMode, setDataViewMode]

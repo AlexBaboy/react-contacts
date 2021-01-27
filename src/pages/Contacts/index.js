@@ -45,10 +45,10 @@ export const Contacts = () => {
                     {(() => {
 
                         if (isLoading) return <CircularProgress data-testid="contacts-loader">Loading...</CircularProgress>
-                        if (isError) return <div>Error...</div>
+                        if (isError) return <div data-testid="contacts-error">Error...</div>
 
                         if (dataViewMode === DATA_VIEW_MODES.TABLE) return <ContactsTable data={data} />
-                        if (dataViewMode === DATA_VIEW_MODES.GRID) return "grid"
+                        if (dataViewMode === DATA_VIEW_MODES.GRID) return <div data-testid='grid-container'>grid</div>
                         return null
 
                     })()}
