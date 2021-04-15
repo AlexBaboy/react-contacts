@@ -13,7 +13,7 @@ import {DATA_VIEW_MODES} from "./constants";
 import {useDataViewMode} from "./useDataViewMode";
 import {useState} from "react";
 import {NATIONALITIES_HUMAN_NAME} from "../../constants/nationalities";
-import {useDebounce} from "react-use";
+import { useDebounce } from 'use-debounce';
 
 const useStyles = makeStyles ((theme) =>
     createStyles({
@@ -35,6 +35,8 @@ export const Contacts = () => {
     const [dataViewMode, setDataViewMode] = useDataViewMode()
     const [filterData, setFilterData] = useState("")
 
+    const [debouncedValue] = useDebounce(filterData, 1000);
+
     let [filteredContacts, setFilteredContacts] = useState(data)
 
     React.useEffect(() => {
@@ -44,13 +46,13 @@ export const Contacts = () => {
 
         console.log('filterData', filterData)
 
-        setTimeout(setFilteredContacts(data.filter(contact=>{
+        setFilteredContacts(data.filter(contact=>{
             return contact?.location?.city.toLowerCase().includes(filterData.toLowerCase()) ||
                    contact?.location?.country.toLowerCase().includes(filterData.toLowerCase()) ||
                    NATIONALITIES_HUMAN_NAME[contact?.nat]?.toLowerCase().includes(filterData.toLowerCase())
-        })),500)
+        }))
 
-    }, [filterData])
+    }, [filterData, debouncedValue])
 
     return (
         <Container className={classes.root}>
