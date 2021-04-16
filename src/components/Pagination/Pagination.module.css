@@ -1,0 +1,10 @@
+.ulStyle {
+    display: flex;
+    gap: 40px;
+    list-style-type: none;
+}
+
+.ulStyle a {
+    color: gray;
+    font-size: 20px;
+}
