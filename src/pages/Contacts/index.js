@@ -44,23 +44,21 @@ export const Contacts = () => {
         if(!filterData)
             setFilteredContacts(data)
 
-        console.log('filterData', filterData)
-
         setFilteredContacts(data.filter(contact=>{
             return contact?.location?.city.toLowerCase().includes(filterData.toLowerCase()) ||
                    contact?.location?.country.toLowerCase().includes(filterData.toLowerCase()) ||
                    NATIONALITIES_HUMAN_NAME[contact?.nat]?.toLowerCase().includes(filterData.toLowerCase())
         }))
-
-    }, [filterData, debouncedValue])
+    }, [data, filterData, debouncedValue ])
 
     return (
         <Container className={classes.root}>
+            <TextField label="filter by location or nationality" margin="normal" variant="outlined" fullWidth onChange={v => setFilterData(v.target.value)}/>
             <Grid container spacing={3}>
                 <Grid item xs={12} className={classes.headContainer}>
                     <Box display="flex" justifyContent="space-between">
                         <Typography variant="h4" component="h1">Contacts</Typography>
-                        <TextField label="Location or Nationality" margin="normal" variant="outlined" onChange={v => setFilterData(v.target.value)}/>
+
                         <ToggleDataViewMode dataViewMode={dataViewMode} setDataViewMode={setDataViewMode} />
                     </Box>
                 </Grid>
