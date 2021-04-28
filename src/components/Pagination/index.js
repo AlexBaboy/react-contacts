@@ -6,7 +6,9 @@ const Pagination = ({ contactsPerPage, totalContacts, paginate }) => {
   for (let i = 1; i <= Math.ceil(totalContacts / contactsPerPage); i++) {
     pageNumbers.push(i);
   }
-
+  console.log("totalContacts", totalContacts);
+  console.log("contactsPerPage", contactsPerPage);
+  console.log("pageNumbers", pageNumbers);
   return (
     <div>
       <nav>

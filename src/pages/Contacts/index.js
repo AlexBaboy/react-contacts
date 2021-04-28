@@ -15,6 +15,8 @@ import { useState } from "react";
 import { NATIONALITIES_HUMAN_NAME } from "../../constants/nationalities";
 import { useDebounce } from "use-debounce";
 import Pagination from "../../components/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { setContactsInitial } from "../../reduxToolkit/toolkitSlice";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -30,7 +32,8 @@ const useStyles = makeStyles((theme) =>
 export const Contacts = () => {
   const classes = useStyles();
 
-  const contacts = useContacts([]);
+  const dispatch = useDispatch();
+  const contacts = dispatch(setContactsInitial());
   const { isLoading, isError, data } = contacts;
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
@@ -39,7 +42,7 @@ export const Contacts = () => {
   const [debouncedValue] = useDebounce(filterData, 1000);
   let [filteredContacts, setFilteredContacts] = useState(data);
 
-  // paginataion
+  // pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [contactsPerPage, setContactsPerPage] = useState(10);
 
@@ -61,6 +64,8 @@ export const Contacts = () => {
         );
       })
     );
+
+    console.log(filteredContacts);
   }, [data, filterData, debouncedValue]);
 
   const indexOfLasContact = currentPage * contactsPerPage;
