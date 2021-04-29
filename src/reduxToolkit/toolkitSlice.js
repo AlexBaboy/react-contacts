@@ -5,35 +5,40 @@ export const setContactsInitial = createAsyncThunk(
   "contacts/setContactsInitial",
   async (searchId, { getState, requestId }) => {
     const response = await axios.get("https://randomuser.me/api/?results=200");
-    return response?.data;
+    return response?.data?.results;
   }
 );
 
 const toolkitSlice = createSlice({
   name: "toolkitSlice",
   initialState: {
-    data: [],
-    loading: true,
+    contactsInitial: [],
+    contactsData: [],
+    isLoading: true,
     isError: false,
+    filterData: "",
   },
 
   reducers: {
-    setTickets(state, action) {
-      state.tickets = action.payload.slice().sort((a, b) => a.price - b.price);
-      state.loading = false;
+    setContactsFiltered(state, action) {
+      state.contactsData = action.payload;
+      state.isLoading = false;
+    },
+    setFilterData(state, action) {
+      state.filterData = action.payload;
     },
   },
 
   extraReducers: (builder) => {
-    builder.addCase(setTicketsInitial.pending, (state, action) => {
-      state.loading = true;
+    builder.addCase(setContactsInitial.pending, (state, action) => {
+      state.isLoading = true;
     });
-    builder.addCase(setTicketsInitial.fulfilled, (state, action) => {
-      state.ticketsInitial = action.payload.sort((a, b) => a.price - b.price);
-      state.tickets = state.ticketsInitial;
-      state.loading = false;
+    builder.addCase(setContactsInitial.fulfilled, (state, action) => {
+      state.contactsInitial = action.payload;
+      state.contactsData = state.contactsInitial;
+      state.isLoading = false;
     });
-    builder.addCase(setTicketsInitial.rejected, (state, action) => {
+    builder.addCase(setContactsInitial.rejected, (state, action) => {
       const { requestId } = action.meta;
       state.exception = action.error;
       state.currentRequestId = undefined;
@@ -42,4 +47,4 @@ const toolkitSlice = createSlice({
 });
 
 export default toolkitSlice.reducer;
-export const { setTickets } = toolkitSlice.actions;
+export const { setContactsFiltered, setFilterData } = toolkitSlice.actions;

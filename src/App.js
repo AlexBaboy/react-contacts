@@ -1,9 +1,11 @@
-import {Contacts} from "./pages/Contacts";
+import { Contacts } from "./pages/Contacts";
+import { Provider } from "react-redux";
+import store from "./reduxToolkit";
 
 export function App() {
   return (
-    <div>
+    <Provider store={store}>
       <Contacts />
-    </div>
+    </Provider>
   );
 }

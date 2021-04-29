@@ -16,7 +16,11 @@ import { NATIONALITIES_HUMAN_NAME } from "../../constants/nationalities";
 import { useDebounce } from "use-debounce";
 import Pagination from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { setContactsInitial } from "../../reduxToolkit/toolkitSlice";
+import {
+  setContactsFiltered,
+  setContactsInitial,
+  setFilterData,
+} from "../../reduxToolkit/toolkitSlice";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -33,44 +37,50 @@ export const Contacts = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const contacts = dispatch(setContactsInitial());
-  const { isLoading, isError, data } = contacts;
+  const contacts = useSelector((state) => state.toolkit.contactsData);
+  const contactsInitial = useSelector((state) => state.toolkit.contactsInitial);
+  const isLoading = useSelector((state) => state.toolkit.isLoading);
+  const isError = useSelector((state) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
   // filter
-  const [filterData, setFilterData] = useState("");
+  let filterData = useSelector((state) => state.toolkit.filterData);
   const [debouncedValue] = useDebounce(filterData, 1000);
-  let [filteredContacts, setFilteredContacts] = useState(data);
 
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [contactsPerPage, setContactsPerPage] = useState(10);
 
   React.useEffect(() => {
-    if (!filterData) setFilteredContacts(data);
+    dispatch(setContactsInitial());
+  }, []);
 
-    setFilteredContacts(
-      data.filter((contact) => {
-        return (
-          contact?.location?.city
-            .toLowerCase()
-            .includes(filterData.toLowerCase()) ||
-          contact?.location?.country
-            .toLowerCase()
-            .includes(filterData.toLowerCase()) ||
-          NATIONALITIES_HUMAN_NAME[contact?.nat]
-            ?.toLowerCase()
-            .includes(filterData.toLowerCase())
-        );
-      })
-    );
+  React.useEffect(() => {
+    if (!debouncedValue) return dispatch(setContactsFiltered(contactsInitial));
+
+    let filteredContacts = contacts.filter((contact) => {
+      return (
+        contact?.location?.city
+          .toLowerCase()
+          .includes(debouncedValue.toLowerCase()) ||
+        contact?.location?.country
+          .toLowerCase()
+          .includes(debouncedValue.toLowerCase()) ||
+        NATIONALITIES_HUMAN_NAME[contact?.nat]
+          ?.toLowerCase()
+          .includes(debouncedValue.toLowerCase())
+      );
+    });
+
+    dispatch(setContactsFiltered(filteredContacts));
 
     console.log(filteredContacts);
-  }, [data, filterData, debouncedValue]);
+  }, [debouncedValue]);
 
   const indexOfLasContact = currentPage * contactsPerPage;
   const indexOfFirstContact = indexOfLasContact - contactsPerPage;
-  const currentContacts = filteredContacts.slice(
+
+  const currentContacts = contacts.slice(
     indexOfFirstContact,
     indexOfLasContact
   );
@@ -84,7 +94,7 @@ export const Contacts = () => {
         margin="normal"
         variant="outlined"
         fullWidth
-        onChange={(v) => setFilterData(v.target.value)}
+        onChange={(v) => dispatch(setFilterData(v.target.value))}
       />
       <Grid container spacing={3}>
         <Grid item xs={12} className={classes.headContainer}>
@@ -116,7 +126,7 @@ export const Contacts = () => {
                   <ContactsTable data={currentContacts} />
                   <Pagination
                     contactsPerPage={contactsPerPage}
-                    totalContacts={filteredContacts.length}
+                    totalContacts={contacts.length}
                     paginate={paginate}
                   ></Pagination>
                 </>
