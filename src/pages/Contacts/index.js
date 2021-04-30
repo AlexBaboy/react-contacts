@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
@@ -44,7 +44,6 @@ export const Contacts = () => {
 
   // filter
   let filterData = useSelector((state) => state.toolkit.filterData);
-  console.log("46 filterData", filterData);
   const [debouncedValue] = useDebounce(filterData, 1000);
 
   // pagination
@@ -85,7 +84,7 @@ export const Contacts = () => {
     indexOfLasContact
   );
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = useCallback((pageNumber) => setCurrentPage(pageNumber),[currentPage]);
 
   return (
     <Container className={classes.root}>
@@ -122,6 +121,7 @@ export const Contacts = () => {
                     contactsPerPage={contactsPerPage}
                     totalContacts={contacts.length}
                     paginate={paginate}
+                    currentPage = {currentPage}
                   ></Pagination>
                 </>
               );

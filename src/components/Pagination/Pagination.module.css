@@ -8,3 +8,9 @@
     color: gray;
     font-size: 20px;
 }
+
+.pageNum {}
+
+.currentPageNum {
+    font-weight: bold;
+}
