@@ -26,4 +26,4 @@ const Pagination = ({ contactsPerPage, totalContacts, paginate }) => {
   );
 };
 
-export default Pagination;
+export default React.memo(Pagination);
