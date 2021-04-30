@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import { setFilterData } from "../../reduxToolkit/toolkitSlice";
 import { useDispatch } from "react-redux";
 
-const Search = () => {
+export const Search = () => {
   const dispatch = useDispatch();
   return (
     <TextField
@@ -17,5 +17,3 @@ const Search = () => {
     />
   );
 };
-
-export default Search;

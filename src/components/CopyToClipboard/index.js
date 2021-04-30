@@ -4,7 +4,7 @@ import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 import { useCopyToClipboard } from "react-use";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ClickAwayListener } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) =>
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const CopyToClipboard = ({ text }) => {
+export const CopyToClipboard = React.memo(({ text }) => {
   const classes = useStyles();
   const [, copyToClipboard] = useCopyToClipboard();
   const [statusCopy, setStatusCopy] = useState("copy");
@@ -47,7 +47,7 @@ export const CopyToClipboard = ({ text }) => {
       </Tooltip>
     </ClickAwayListener>
   );
-};
+});
 
 CopyToClipboard.propTypes = {
   text: PropTypes.string.isRequired,

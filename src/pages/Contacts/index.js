@@ -14,13 +14,13 @@ import { useDataViewMode } from "./useDataViewMode";
 import { useState } from "react";
 import { NATIONALITIES_HUMAN_NAME } from "../../constants/nationalities";
 import { useDebounce } from "use-debounce";
-import Pagination from "../../components/Pagination";
+import { Pagination } from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setContactsFiltered,
   setContactsInitial,
 } from "../../reduxToolkit/toolkitSlice";
-import Search from "../../components/Search";
+import { Search } from "../../components/Search";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
