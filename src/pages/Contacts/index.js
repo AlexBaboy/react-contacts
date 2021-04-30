@@ -90,7 +90,7 @@ export const Contacts = () => {
 
   return (
     <Container className={classes.root}>
-      <Search filterData={filterData} />
+      <Search />
       <Grid container spacing={3}>
         <Grid item xs={12} className={classes.headContainer}>
           <Box display="flex" justifyContent="space-between">

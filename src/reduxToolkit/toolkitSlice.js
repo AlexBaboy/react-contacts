@@ -25,6 +25,7 @@ const toolkitSlice = createSlice({
       state.isLoading = false;
     },
     setFilterData(state, action) {
+      console.log("28 action", action);
       state.filterData = action.payload;
     },
   },
