@@ -19,8 +19,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   setContactsFiltered,
   setContactsInitial,
-  setFilterData,
 } from "../../reduxToolkit/toolkitSlice";
+import Search from "../../components/Search";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -45,6 +45,7 @@ export const Contacts = () => {
 
   // filter
   let filterData = useSelector((state) => state.toolkit.filterData);
+  console.log("46 filterData", filterData);
   const [debouncedValue] = useDebounce(filterData, 1000);
 
   // pagination
@@ -89,13 +90,7 @@ export const Contacts = () => {
 
   return (
     <Container className={classes.root}>
-      <TextField
-        label="filter by location or nationality"
-        margin="normal"
-        variant="outlined"
-        fullWidth
-        onChange={(v) => dispatch(setFilterData(v.target.value))}
-      />
+      <Search filterData={filterData} />
       <Grid container spacing={3}>
         <Grid item xs={12} className={classes.headContainer}>
           <Box display="flex" justifyContent="space-between">
