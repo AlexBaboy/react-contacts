@@ -1,9 +1,7 @@
 import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
 import axios from "axios";
 import {NATIONALITIES_HUMAN_NAME} from "../constants/nationalities";
-import {createSelector} from "reselect";
 import {contactsFiltered} from "../pages/Contacts";
-import useDebounce from "react-use/esm/useDebounce";
 
 export const setContactsInitial = createAsyncThunk(
   "contacts/setContactsInitial",
@@ -21,13 +19,16 @@ const toolkitSlice = createSlice({
     isLoading: true,
     isError: false,
     filterData: "",
-    debouncedValue: useDebounce(this.filterData, 1000)
+    debouncedValueRedux: null
   },
 
   reducers: {
     setContactsFiltered(state, action) {
       state.contactsData = action.payload;
       state.isLoading = false;
+    },
+    setDebounceValueRedux(state, action) {
+      state.debouncedValueRedux = action.payload;
     },
     setFilterData(state, action) {
       state.filterData  = createSelector(
@@ -36,13 +37,13 @@ const toolkitSlice = createSlice({
             return (
                 contact?.location?.city
                     .toLowerCase()
-                    .includes(this.debouncedValue.toLowerCase()) ||
+                    .includes(this.debouncedValueRedux.toLowerCase()) ||
                 contact?.location?.country
                     .toLowerCase()
-                    .includes(this.debouncedValue.toLowerCase()) ||
+                    .includes(this.debouncedValueRedux.toLowerCase()) ||
                 NATIONALITIES_HUMAN_NAME[contact?.nat]
                     ?.toLowerCase()
-                    .includes(this.debouncedValue.toLowerCase())
+                    .includes(this.debouncedValueRedux.toLowerCase())
             );
           })
       )
@@ -67,4 +68,4 @@ const toolkitSlice = createSlice({
 });
 
 export default toolkitSlice.reducer;
-export const { setContactsFiltered, setFilterData } = toolkitSlice.actions;
+export const { setContactsFiltered, setFilterData, setDebounceValueRedux } = toolkitSlice.actions;

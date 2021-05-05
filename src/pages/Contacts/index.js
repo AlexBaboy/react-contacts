@@ -17,7 +17,7 @@ import { Pagination } from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setContactsFiltered,
-  setContactsInitial,
+  setContactsInitial, setDebounceValueRedux,
 } from "../../reduxToolkit/toolkitSlice";
 import { Search } from "../../components/Search";
 
@@ -32,20 +32,23 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+export const contactsFiltered = (state) => state.toolkit.contactsData;
+
 export const Contacts = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
   //const contacts = (state) => useSelector((state) => state.toolkit.contactsData);
-  export const contactsFiltered = (state) => state.toolkit.contactsData;
+
   const contactsInitial = useSelector((state) => state.toolkit.contactsInitial);
   const isLoading = useSelector((state) => state.toolkit.isLoading);
   const isError = useSelector((state) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
   // filter
-  let filterData = useSelector((state) => state.toolkit.filterData);
-  const debouncedValue = useSelector(state => state.toolkit.debouncedValue);
+  const filterData = useSelector((state) => state.toolkit.filterData);
+  //dispatch(setDebounceValueRedux(useDebounce(filterData, 1000)));
+  const debouncedValueRedux = useSelector((state) => state.toolkit.debounceValueRedux);
 
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -56,19 +59,19 @@ export const Contacts = () => {
   }, []);
 
   React.useEffect(() => {
-    if (!debouncedValue) return dispatch(setContactsFiltered(contactsInitial));
+    console.log("contactsFiltered", contactsFiltered)
+    if (!debouncedValueRedux) return dispatch(setContactsFiltered(contactsInitial));
 
+    console.log("contactsFiltered", contactsFiltered)
+    dispatch(setContactsFiltered(contactsFiltered));
 
-
-    dispatch(setContactsFiltered(filteredContacts, debouncedValue));
-
-    console.log(filteredContacts);
-  }, [debouncedValue]);
+    console.log(contactsFiltered);
+  }, [debouncedValueRedux]);
 
   const indexOfLasContact = currentPage * contactsPerPage;
   const indexOfFirstContact = indexOfLasContact - contactsPerPage;
 
-  const currentContacts = contacts.slice(
+  const currentContacts = contactsFiltered?.slice(
     indexOfFirstContact,
     indexOfLasContact
   );
@@ -108,7 +111,7 @@ export const Contacts = () => {
                   <ContactsTable data={currentContacts} />
                   <Pagination
                     contactsPerPage={contactsPerPage}
-                    totalContacts={contacts.length}
+                    totalContacts={contactsFiltered.length}
                     paginate={paginate}
                     currentPage = {currentPage}
                   ></Pagination>
