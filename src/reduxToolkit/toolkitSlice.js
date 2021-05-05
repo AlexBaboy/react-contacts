@@ -31,9 +31,9 @@ const toolkitSlice = createSlice({
       state.debouncedValueRedux = action.payload;
     },
     setFilterData(state, action) {
-      state.filterData  = createSelector(
+      const filterData  = createSelector(
           [contactsFiltered],
-          action.payload.filter((contact) => {
+          () => {action.payload.filter((contact) => {
             return (
                 contact?.location?.city
                     .toLowerCase()
@@ -45,8 +45,8 @@ const toolkitSlice = createSlice({
                     ?.toLowerCase()
                     .includes(this.debouncedValueRedux.toLowerCase())
             );
-          })
-      )
+          })})
+        state.contactsData = filterData;
     },
   },
 

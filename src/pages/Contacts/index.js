@@ -59,7 +59,7 @@ export const Contacts = () => {
   }, []);
 
   React.useEffect(() => {
-    console.log("contactsFiltered", contactsFiltered)
+
     if (!debouncedValueRedux) return dispatch(setContactsFiltered(contactsInitial));
 
     console.log("contactsFiltered", contactsFiltered)
@@ -71,6 +71,7 @@ export const Contacts = () => {
   const indexOfLasContact = currentPage * contactsPerPage;
   const indexOfFirstContact = indexOfLasContact - contactsPerPage;
 
+  console.log("contactsFiltered", contactsFiltered)
   const currentContacts = contactsFiltered?.slice(
     indexOfFirstContact,
     indexOfLasContact
