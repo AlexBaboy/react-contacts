@@ -36,7 +36,8 @@ export const Contacts = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.toolkit.contactsData);
+  //const contacts = (state) => useSelector((state) => state.toolkit.contactsData);
+  export const contactsFiltered = (state) => state.toolkit.contactsData;
   const contactsInitial = useSelector((state) => state.toolkit.contactsInitial);
   const isLoading = useSelector((state) => state.toolkit.isLoading);
   const isError = useSelector((state) => state.toolkit.isError);
@@ -44,7 +45,7 @@ export const Contacts = () => {
 
   // filter
   let filterData = useSelector((state) => state.toolkit.filterData);
-  const [debouncedValue] = useDebounce(filterData, 1000);
+  const debouncedValue = useSelector(state => state.toolkit.debouncedValue);
 
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,21 +58,9 @@ export const Contacts = () => {
   React.useEffect(() => {
     if (!debouncedValue) return dispatch(setContactsFiltered(contactsInitial));
 
-    let filteredContacts = contacts.filter((contact) => {
-      return (
-        contact?.location?.city
-          .toLowerCase()
-          .includes(debouncedValue.toLowerCase()) ||
-        contact?.location?.country
-          .toLowerCase()
-          .includes(debouncedValue.toLowerCase()) ||
-        NATIONALITIES_HUMAN_NAME[contact?.nat]
-          ?.toLowerCase()
-          .includes(debouncedValue.toLowerCase())
-      );
-    });
 
-    dispatch(setContactsFiltered(filteredContacts));
+
+    dispatch(setContactsFiltered(filteredContacts, debouncedValue));
 
     console.log(filteredContacts);
   }, [debouncedValue]);
