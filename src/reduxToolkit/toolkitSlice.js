@@ -1,7 +1,10 @@
-import {createAsyncThunk, createSelector, createSlice} from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSelector,
+  createSlice,
+} from "@reduxjs/toolkit";
 import axios from "axios";
-import {NATIONALITIES_HUMAN_NAME} from "../constants/nationalities";
-import {contactsFiltered} from "../pages/Contacts";
+import { NATIONALITIES_HUMAN_NAME } from "../constants/nationalities";
 
 export const setContactsInitial = createAsyncThunk(
   "contacts/setContactsInitial",
@@ -11,6 +14,8 @@ export const setContactsInitial = createAsyncThunk(
   }
 );
 
+export const setContactsFilteredFunc = (state) => state.toolkit.contactsData;
+
 const toolkitSlice = createSlice({
   name: "toolkitSlice",
   initialState: {
@@ -19,7 +24,7 @@ const toolkitSlice = createSlice({
     isLoading: true,
     isError: false,
     filterData: "",
-    debouncedValueRedux: null
+    debouncedValueRedux: null,
   },
 
   reducers: {
@@ -31,22 +36,23 @@ const toolkitSlice = createSlice({
       state.debouncedValueRedux = action.payload;
     },
     setFilterData(state, action) {
-      const filterData  = createSelector(
-          [contactsFiltered],
-          () => {action.payload.filter((contact) => {
-            return (
-                contact?.location?.city
-                    .toLowerCase()
-                    .includes(this.debouncedValueRedux.toLowerCase()) ||
-                contact?.location?.country
-                    .toLowerCase()
-                    .includes(this.debouncedValueRedux.toLowerCase()) ||
-                NATIONALITIES_HUMAN_NAME[contact?.nat]
-                    ?.toLowerCase()
-                    .includes(this.debouncedValueRedux.toLowerCase())
-            );
-          })})
-        state.contactsData = filterData;
+      console.log("34 contactsFiltered", state.contactsData);
+      const filterData = createSelector([setContactsFilteredFunc], () => {
+        action.payload.filter((contact) => {
+          return (
+            contact?.location?.city
+              .toLowerCase()
+              .includes(this.debouncedValueRedux.toLowerCase()) ||
+            contact?.location?.country
+              .toLowerCase()
+              .includes(this.debouncedValueRedux.toLowerCase()) ||
+            NATIONALITIES_HUMAN_NAME[contact?.nat]
+              ?.toLowerCase()
+              .includes(this.debouncedValueRedux.toLowerCase())
+          );
+        });
+      });
+      state.contactsData = filterData;
     },
   },
 
@@ -68,4 +74,8 @@ const toolkitSlice = createSlice({
 });
 
 export default toolkitSlice.reducer;
-export const { setContactsFiltered, setFilterData, setDebounceValueRedux } = toolkitSlice.actions;
+export const {
+  setContactsFiltered,
+  setFilterData,
+  setDebounceValueRedux,
+} = toolkitSlice.actions;
