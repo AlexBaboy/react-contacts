@@ -28,12 +28,15 @@ const toolkitSlice = createSlice({
   },
 
   reducers: {
+    setFilterData(state, action) {
+      state.filterData = action.payload;
+    },
     setDebounceValueRedux(state, action) {
       state.debouncedValueRedux = action.payload;
     },
     setContactsFiltered(state, action) {
       console.log("34 contactsSelector", contactsSelector);
-      console.log("34 contactsFiltered", state.contactsData);
+
       const filterData = createSelector([contactsSelector], () => {
         action.payload.filter((contact) => {
           return (
@@ -50,6 +53,7 @@ const toolkitSlice = createSlice({
         });
       });
       state.contactsData = filterData;
+      console.log("56 contactsData", state.contactsData);
     },
   },
 
