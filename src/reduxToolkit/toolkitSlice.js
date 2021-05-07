@@ -14,7 +14,7 @@ export const setContactsInitial = createAsyncThunk(
   }
 );
 
-export const setContactsFilteredFunc = (state) => state.toolkit.contactsData;
+export const contactsSelector = (state) => state.toolkit.contactsData;
 
 const toolkitSlice = createSlice({
   name: "toolkitSlice",
@@ -28,16 +28,13 @@ const toolkitSlice = createSlice({
   },
 
   reducers: {
-    setContactsFiltered(state, action) {
-      state.contactsData = action.payload;
-      state.isLoading = false;
-    },
     setDebounceValueRedux(state, action) {
       state.debouncedValueRedux = action.payload;
     },
-    setFilterData(state, action) {
+    setContactsFiltered(state, action) {
+      console.log("34 contactsSelector", contactsSelector);
       console.log("34 contactsFiltered", state.contactsData);
-      const filterData = createSelector([setContactsFilteredFunc], () => {
+      const filterData = createSelector([contactsSelector], () => {
         action.payload.filter((contact) => {
           return (
             contact?.location?.city

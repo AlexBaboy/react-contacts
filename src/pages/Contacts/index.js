@@ -16,8 +16,8 @@ import { useDebounce, useDebouncedCallback } from "use-debounce";
 import { Pagination } from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  contactsSelector,
   setContactsFiltered,
-  setContactsFilteredFunc,
   setContactsInitial,
   setDebounceValueRedux,
 } from "../../reduxToolkit/toolkitSlice";
@@ -38,12 +38,7 @@ export const Contacts = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const contactsFiltered = useSelector((state) =>
-    state.toolkit.setContactsFilteredFunc(state)
-  );
-  //const contactsFilteredArr = useSelector(state);
-
-  //console.log("contactsFilteredArr", contactsFilteredArr);
+  const contactsFiltered = useSelector((state) => contactsSelector(state));
 
   const contactsInitial = useSelector((state) => state.toolkit.contactsInitial);
   const isLoading = useSelector((state) => state.toolkit.isLoading);
@@ -67,9 +62,6 @@ export const Contacts = () => {
   }, []);
 
   React.useEffect(() => {
-    if (!debouncedValueRedux)
-      return dispatch(setContactsFiltered(contactsInitial));
-
     dispatch(setContactsFiltered(contactsFiltered));
   }, [debouncedValueRedux]);
 
