@@ -39,7 +39,7 @@ export const ContactsTable = ({ data }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((contact) => (
+          {data?.map((contact) => (
             <TableRow key={contact.login.uuid}>
               <TableCell component="th" scope="row">
                 <Avatar

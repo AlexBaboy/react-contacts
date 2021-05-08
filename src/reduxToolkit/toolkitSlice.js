@@ -34,7 +34,7 @@ const toolkitSlice = createSlice({
       state.debouncedValueRedux = action.payload;
     },
     setContactsFiltered(state, action) {
-      state.contactsData = action.payload;;
+      state.contactsData = action.payload;
     },
   },
 

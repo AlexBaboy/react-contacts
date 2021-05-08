@@ -1,9 +1,9 @@
 import {NATIONALITIES_HUMAN_NAME} from "../../constants/nationalities";
 
 export const contactsFilteredSelector = (filterData, contactsInitial) => {
-    console.log("filterData", filterData)
+    console.log("4 filterData", filterData)
     if( filterData ) {
-        contactsInitial.filter((contact) => {
+        return contactsInitial.filter((contact) => {
             return (
                 contact?.location?.city
                     .toLowerCase()

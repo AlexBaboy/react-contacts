@@ -64,7 +64,7 @@ export const Contacts = () => {
   }, []);
 
   React.useEffect(() => {
-    dispatch(setContactsFiltered(contactsFiltered));
+    contactsFilteredSelector(filterData, contactsInitial);
   }, [debouncedValueRedux]);
 
   const indexOfLasContact = currentPage * contactsPerPage;
@@ -113,7 +113,7 @@ export const Contacts = () => {
                   <ContactsTable data={currentContacts} />
                   <Pagination
                     contactsPerPage={contactsPerPage}
-                    totalContacts={contactsFiltered.length}
+                    totalContacts={contactsFiltered?.length}
                     paginate={paginate}
                     currentPage={currentPage}
                   ></Pagination>
