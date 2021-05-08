@@ -22,7 +22,7 @@ export const Search = () => {
       variant="outlined"
       fullWidth
       onChange={(e) => {
-        debouncedFilterData(e.target.value);
+        debouncedFilterData(e.target.value?.toLowerCase());
       }}
     />
   );

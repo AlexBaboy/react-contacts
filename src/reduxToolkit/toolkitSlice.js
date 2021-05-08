@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { NATIONALITIES_HUMAN_NAME } from "../constants/nationalities";
 
 export const setContactsInitial = createAsyncThunk(
   "contacts/setContactsInitial",

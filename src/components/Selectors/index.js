@@ -6,13 +6,13 @@ export const contactsFilteredSelector = (state) => {
       return (
         contact?.location?.city
           .toLowerCase()
-          .includes(state?.toolkit?.debouncedFilterData.toLowerCase()) ||
+          .includes(state?.toolkit?.debouncedFilterData) ||
         contact?.location?.country
           .toLowerCase()
-          .includes(state?.toolkit?.debouncedFilterData.toLowerCase()) ||
+          .includes(state?.toolkit?.debouncedFilterData) ||
         NATIONALITIES_HUMAN_NAME[contact?.nat]
           ?.toLowerCase()
-          .includes(state?.toolkit?.debouncedFilterData.toLowerCase())
+          .includes(state?.toolkit?.debouncedFilterData)
       );
     });
   } else {
