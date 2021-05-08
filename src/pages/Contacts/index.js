@@ -16,12 +16,12 @@ import { useDebounce, useDebouncedCallback } from "use-debounce";
 import { Pagination } from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  contactsSelector,
   setContactsFiltered,
   setContactsInitial,
   setDebounceValueRedux,
 } from "../../reduxToolkit/toolkitSlice";
 import { Search } from "../../components/Search";
+import {contactsFilteredSelector} from "../../components/Selectors";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -38,9 +38,9 @@ export const Contacts = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
-  const contactsFiltered = useSelector((state) => contactsSelector(state));
 
   const contactsInitial = useSelector((state) => state.toolkit.contactsInitial);
+
   const isLoading = useSelector((state) => state.toolkit.isLoading);
   const isError = useSelector((state) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
@@ -52,6 +52,8 @@ export const Contacts = () => {
     () => dispatch(setDebounceValueRedux(filterData)),
     1000
   );
+
+  const contactsFiltered = contactsFilteredSelector(filterData, contactsInitial);
 
   // pagination
   const [currentPage, setCurrentPage] = useState(1);

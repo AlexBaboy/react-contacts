@@ -1,6 +1,5 @@
 import {
   createAsyncThunk,
-  createSelector,
   createSlice,
 } from "@reduxjs/toolkit";
 import axios from "axios";
@@ -14,7 +13,7 @@ export const setContactsInitial = createAsyncThunk(
   }
 );
 
-export const contactsSelector = (state) => state.toolkit.contactsData;
+
 
 const toolkitSlice = createSlice({
   name: "toolkitSlice",
@@ -35,25 +34,7 @@ const toolkitSlice = createSlice({
       state.debouncedValueRedux = action.payload;
     },
     setContactsFiltered(state, action) {
-      console.log("34 contactsSelector", contactsSelector);
-
-      const filterData = createSelector([contactsSelector], () => {
-        action.payload.filter((contact) => {
-          return (
-            contact?.location?.city
-              .toLowerCase()
-              .includes(this.debouncedValueRedux.toLowerCase()) ||
-            contact?.location?.country
-              .toLowerCase()
-              .includes(this.debouncedValueRedux.toLowerCase()) ||
-            NATIONALITIES_HUMAN_NAME[contact?.nat]
-              ?.toLowerCase()
-              .includes(this.debouncedValueRedux.toLowerCase())
-          );
-        });
-      });
-      state.contactsData = filterData;
-      console.log("56 contactsData", state.contactsData);
+      state.contactsData = action.payload;;
     },
   },
 
