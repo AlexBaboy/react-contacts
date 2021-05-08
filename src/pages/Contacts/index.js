@@ -39,8 +39,6 @@ export const Contacts = () => {
 
   const dispatch = useDispatch();
 
-  const contactsInitial = useSelector((state) => state.toolkit.contactsInitial);
-
   const isLoading = useSelector((state) => state.toolkit.isLoading);
   const isError = useSelector((state) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
@@ -53,7 +51,7 @@ export const Contacts = () => {
     1000
   );
 
-  const contactsFiltered = contactsFilteredSelector(filterData, contactsInitial);
+  const contactsFiltered = useSelector(contactsFilteredSelector);
 
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -63,9 +61,9 @@ export const Contacts = () => {
     dispatch(setContactsInitial());
   }, []);
 
-  React.useEffect(() => {
-    contactsFilteredSelector(filterData, contactsInitial);
-  }, [debouncedValueRedux]);
+  /*React.useEffect(() => {
+    useSelector(contactsFilteredSelector);
+  }, [debouncedValueRedux]);*/
 
   const indexOfLasContact = currentPage * contactsPerPage;
   const indexOfFirstContact = indexOfLasContact - contactsPerPage;
