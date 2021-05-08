@@ -1,7 +1,4 @@
-import {
-  createAsyncThunk,
-  createSlice,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { NATIONALITIES_HUMAN_NAME } from "../constants/nationalities";
 
@@ -13,25 +10,23 @@ export const setContactsInitial = createAsyncThunk(
   }
 );
 
-
-
-const toolkitSlice = createSlice({
-  name: "toolkitSlice",
+const contactsSlice = createSlice({
+  name: "contactsSlice",
   initialState: {
     contactsInitial: [],
     contactsData: [],
     isLoading: true,
     isError: false,
     filterData: "",
-    debouncedValueRedux: null,
+    debouncedFilterData: "",
   },
 
   reducers: {
     setFilterData(state, action) {
       state.filterData = action.payload;
     },
-    setDebounceValueRedux(state, action) {
-      state.debouncedValueRedux = action.payload;
+    setDebouncedFilterData(state, action) {
+      state.debouncedFilterData = action.payload;
     },
     setContactsFiltered(state, action) {
       state.contactsData = action.payload;
@@ -55,9 +50,9 @@ const toolkitSlice = createSlice({
   },
 });
 
-export default toolkitSlice.reducer;
+export default contactsSlice.reducer;
 export const {
   setContactsFiltered,
   setFilterData,
-  setDebounceValueRedux,
-} = toolkitSlice.actions;
+  setDebouncedFilterData,
+} = contactsSlice.actions;

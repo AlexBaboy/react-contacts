@@ -1,10 +1,20 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import { setFilterData } from "../../reduxToolkit/toolkitSlice";
+import {
+  setDebouncedFilterData,
+  setFilterData,
+} from "../../reduxToolkit/toolkitSlice";
 import { useDispatch } from "react-redux";
+import { useDebouncedCallback } from "use-debounce";
 
 export const Search = () => {
   const dispatch = useDispatch();
+
+  const debouncedFilterData = useDebouncedCallback(
+    (value) => dispatch(setDebouncedFilterData(value)),
+    1000
+  );
+
   return (
     <TextField
       label="filter by location or nationality"
@@ -12,7 +22,7 @@ export const Search = () => {
       variant="outlined"
       fullWidth
       onChange={(e) => {
-        dispatch(setFilterData(e.target.value));
+        debouncedFilterData(e.target.value);
       }}
     />
   );

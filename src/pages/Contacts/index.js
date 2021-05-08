@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
-import { useContacts } from "./useContacts";
+
 import Typography from "@material-ui/core/Typography";
 import { ContactsTable } from "./ContactsTable";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -11,17 +11,12 @@ import { ToggleDataViewMode } from "./ToggleDataViewMode";
 import { DATA_VIEW_MODES } from "./constants";
 import { useDataViewMode } from "./useDataViewMode";
 import { useState } from "react";
-import { NATIONALITIES_HUMAN_NAME } from "../../constants/nationalities";
-import { useDebounce, useDebouncedCallback } from "use-debounce";
+
 import { Pagination } from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setContactsFiltered,
-  setContactsInitial,
-  setDebounceValueRedux,
-} from "../../reduxToolkit/toolkitSlice";
+import { setContactsInitial } from "../../reduxToolkit/toolkitSlice";
 import { Search } from "../../components/Search";
-import {contactsFilteredSelector} from "../../components/Selectors";
+import { contactsFilteredSelector } from "../../components/Selectors";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -43,14 +38,6 @@ export const Contacts = () => {
   const isError = useSelector((state) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
-  // filter
-  const filterData = useSelector((state) => state.toolkit.filterData);
-
-  const debouncedValueRedux = useDebouncedCallback(
-    () => dispatch(setDebounceValueRedux(filterData)),
-    1000
-  );
-
   const contactsFiltered = useSelector(contactsFilteredSelector);
 
   // pagination
@@ -61,14 +48,9 @@ export const Contacts = () => {
     dispatch(setContactsInitial());
   }, []);
 
-  /*React.useEffect(() => {
-    useSelector(contactsFilteredSelector);
-  }, [debouncedValueRedux]);*/
-
   const indexOfLasContact = currentPage * contactsPerPage;
   const indexOfFirstContact = indexOfLasContact - contactsPerPage;
 
-  console.log("75 contactsFiltered", contactsFiltered);
   const currentContacts = contactsFiltered?.slice(
     indexOfFirstContact,
     indexOfLasContact
