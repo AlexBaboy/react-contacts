@@ -50,20 +50,13 @@ export const Contacts = () => {
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
   // filter
-  const contactsFiltered = dispatch(
-    setContactsFiltered(useSelector(contactsFilteredSelector))
-  );
+  const contactsFiltered = useSelector(contactsFilteredSelector);
 
   // pagination
   const currentPage = useSelector((state) => state.toolkit.currentPage);
   const contactsPerPage = useSelector((state) => state.toolkit.contactsPerPage);
-  const indexOfLastContact = dispatch(
-    setIndexOfLastContact(useSelector(getIndexOfLastContact))
-  );
-  const indexOfFirstContact = dispatch(
-    setIndexOfFirstContact(useSelector(getIndexOfFirstContact))
-  );
-
+  const indexOfLastContact = useSelector(getIndexOfLastContact);
+  const indexOfFirstContact = useSelector(getIndexOfFirstContact);
   const currentContacts = useSelector(getCurrentContacts);
 
   const paginate = useCallback(

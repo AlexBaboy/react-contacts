@@ -31,7 +31,8 @@ export const getIndexOfFirstContact = (state) => {
 };
 
 export const getCurrentContacts = (state) => {
-  return state?.contactsFiltered?.slice(
+  const contactsFiltered = contactsFilteredSelector(state);
+  return contactsFiltered.slice(
     state?.indexOfFirstContact,
     state?.indexOfLastContact
   );
