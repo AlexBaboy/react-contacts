@@ -20,8 +20,6 @@ const contactsSlice = createSlice({
     debouncedFilterData: "",
     currentPage: 1,
     contactsPerPage: 10,
-    indexOfLastContact: null,
-    indexOfFirstContact: null,
   },
 
   reducers: {
@@ -36,12 +34,6 @@ const contactsSlice = createSlice({
     },
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
-    },
-    setIndexOfLastContact(state, action) {
-      state.indexOfLastContact = action.payload;
-    },
-    setIndexOfFirstContact(state, action) {
-      state.indexOfLastContact = action.payload;
     },
   },
 
@@ -67,6 +59,4 @@ export const {
   setContactsFiltered,
   setDebouncedFilterData,
   setCurrentPage,
-  setIndexOfLastContact,
-  setIndexOfFirstContact,
 } = contactsSlice.actions;

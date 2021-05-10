@@ -20,22 +20,11 @@ export const contactsFilteredSelector = (state) => {
   }
 };
 
-export const getIndexOfLastContact = (state) => {
-  if (state?.currentPage && state?.contactsPerPage)
-    return state?.currentPage * state?.contactsPerPage;
-};
-
-export const getIndexOfFirstContact = (state) => {
-  const indexOfLastContact = getIndexOfLastContact(state);
-  if (indexOfLastContact && state?.contactsPerPage)
-    return indexOfLastContact - state?.contactsPerPage;
-};
-
 export const getCurrentContacts = (state) => {
   const contactsFiltered = contactsFilteredSelector(state);
-  const indexOfFirstContact = getIndexOfFirstContact(state);
-  const indexOfLastContact = getIndexOfLastContact(state);
-  console.log("indexOfFirstContact", indexOfFirstContact);
-  console.log("indexOfLastContact", indexOfLastContact);
+  const indexOfLastContact =
+    state.toolkit.currentPage * state.toolkit.contactsPerPage;
+  const indexOfFirstContact =
+    indexOfLastContact - state.toolkit.contactsPerPage;
   return contactsFiltered.slice(indexOfFirstContact, indexOfLastContact);
 };

@@ -10,23 +10,17 @@ import { Box } from "@material-ui/core";
 import { ToggleDataViewMode } from "./ToggleDataViewMode";
 import { DATA_VIEW_MODES } from "./constants";
 import { useDataViewMode } from "./useDataViewMode";
-import { useState } from "react";
 
 import { Pagination } from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  setContactsFiltered,
   setContactsInitial,
   setCurrentPage,
-  setIndexOfFirstContact,
-  setIndexOfLastContact,
 } from "../../reduxToolkit/toolkitSlice";
 import { Search } from "../../components/Search";
 import {
   contactsFilteredSelector,
   getCurrentContacts,
-  getIndexOfFirstContact,
-  getIndexOfLastContact,
 } from "../../components/Selectors";
 
 const useStyles = makeStyles((theme) =>
@@ -55,8 +49,6 @@ export const Contacts = () => {
   // pagination
   const currentPage = useSelector((state) => state.toolkit.currentPage);
   const contactsPerPage = useSelector((state) => state.toolkit.contactsPerPage);
-  const indexOfLastContact = useSelector(getIndexOfLastContact);
-  const indexOfFirstContact = useSelector(getIndexOfFirstContact);
   const currentContacts = useSelector(getCurrentContacts);
 
   const paginate = useCallback(
