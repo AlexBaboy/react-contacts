@@ -26,14 +26,16 @@ export const getIndexOfLastContact = (state) => {
 };
 
 export const getIndexOfFirstContact = (state) => {
-  if (state?.indexOfLastContact && state?.contactsPerPage)
-    return state?.indexOfLastContact - state?.contactsPerPage;
+  const indexOfLastContact = getIndexOfLastContact(state);
+  if (indexOfLastContact && state?.contactsPerPage)
+    return indexOfLastContact - state?.contactsPerPage;
 };
 
 export const getCurrentContacts = (state) => {
   const contactsFiltered = contactsFilteredSelector(state);
-  return contactsFiltered.slice(
-    state?.indexOfFirstContact,
-    state?.indexOfLastContact
-  );
+  const indexOfFirstContact = getIndexOfFirstContact(state);
+  const indexOfLastContact = getIndexOfLastContact(state);
+  console.log("indexOfFirstContact", indexOfFirstContact);
+  console.log("indexOfLastContact", indexOfLastContact);
+  return contactsFiltered.slice(indexOfFirstContact, indexOfLastContact);
 };
