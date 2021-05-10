@@ -14,9 +14,20 @@ import { useState } from "react";
 
 import { Pagination } from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { setContactsInitial } from "../../reduxToolkit/toolkitSlice";
+import {
+  setContactsFiltered,
+  setContactsInitial,
+  setCurrentPage,
+  setIndexOfFirstContact,
+  setIndexOfLastContact,
+} from "../../reduxToolkit/toolkitSlice";
 import { Search } from "../../components/Search";
-import { contactsFilteredSelector } from "../../components/Selectors";
+import {
+  contactsFilteredSelector,
+  getCurrentContacts,
+  getIndexOfFirstContact,
+  getIndexOfLastContact,
+} from "../../components/Selectors";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -38,27 +49,31 @@ export const Contacts = () => {
   const isError = useSelector((state) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
-  const contactsFiltered = useSelector(contactsFilteredSelector);
+  // filter
+  const contactsFiltered = dispatch(
+    setContactsFiltered(useSelector(contactsFilteredSelector))
+  );
 
   // pagination
-  const [currentPage, setCurrentPage] = useState(1);
-  const [contactsPerPage, setContactsPerPage] = useState(10);
+  const currentPage = useSelector((state) => state.toolkit.currentPage);
+  const contactsPerPage = useSelector((state) => state.toolkit.contactsPerPage);
+  const indexOfLastContact = dispatch(
+    setIndexOfLastContact(useSelector(getIndexOfLastContact))
+  );
+  const indexOfFirstContact = dispatch(
+    setIndexOfFirstContact(useSelector(getIndexOfFirstContact))
+  );
+
+  const currentContacts = useSelector(getCurrentContacts);
+
+  const paginate = useCallback(
+    (pageNumber) => dispatch(setCurrentPage(pageNumber)),
+    [currentPage]
+  );
 
   React.useEffect(() => {
     dispatch(setContactsInitial());
   }, []);
-
-  const indexOfLasContact = currentPage * contactsPerPage;
-  const indexOfFirstContact = indexOfLasContact - contactsPerPage;
-
-  const currentContacts = contactsFiltered?.slice(
-    indexOfFirstContact,
-    indexOfLasContact
-  );
-
-  const paginate = useCallback((pageNumber) => setCurrentPage(pageNumber), [
-    currentPage,
-  ]);
 
   return (
     <Container className={classes.root}>

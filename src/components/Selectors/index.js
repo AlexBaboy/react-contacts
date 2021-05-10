@@ -19,3 +19,20 @@ export const contactsFilteredSelector = (state) => {
     return state?.toolkit?.contactsInitial;
   }
 };
+
+export const getIndexOfLastContact = (state) => {
+  if (state?.currentPage && state?.contactsPerPage)
+    return state?.currentPage * state?.contactsPerPage;
+};
+
+export const getIndexOfFirstContact = (state) => {
+  if (state?.indexOfLastContact && state?.contactsPerPage)
+    return state?.indexOfLastContact - state?.contactsPerPage;
+};
+
+export const getCurrentContacts = (state) => {
+  return state?.contactsFiltered?.slice(
+    state?.indexOfFirstContact,
+    state?.indexOfLastContact
+  );
+};

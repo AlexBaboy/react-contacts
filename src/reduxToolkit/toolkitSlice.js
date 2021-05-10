@@ -13,11 +13,15 @@ const contactsSlice = createSlice({
   name: "contactsSlice",
   initialState: {
     contactsInitial: [],
-    contactsData: [],
+    contactsFiltered: [],
     isLoading: true,
     isError: false,
     filterData: "",
     debouncedFilterData: "",
+    currentPage: 1,
+    contactsPerPage: 10,
+    indexOfLastContact: null,
+    indexOfFirstContact: null,
   },
 
   reducers: {
@@ -28,7 +32,16 @@ const contactsSlice = createSlice({
       state.debouncedFilterData = action.payload;
     },
     setContactsFiltered(state, action) {
-      state.contactsData = action.payload;
+      state.contactsFiltered = action.payload;
+    },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
+    setIndexOfLastContact(state, action) {
+      state.indexOfLastContact = action.payload;
+    },
+    setIndexOfFirstContact(state, action) {
+      state.indexOfLastContact = action.payload;
     },
   },
 
@@ -38,7 +51,7 @@ const contactsSlice = createSlice({
     });
     builder.addCase(setContactsInitial.fulfilled, (state, action) => {
       state.contactsInitial = action.payload;
-      state.contactsData = state.contactsInitial;
+      state.contactsFiltered = state.contactsInitial;
       state.isLoading = false;
     });
     builder.addCase(setContactsInitial.rejected, (state, action) => {
@@ -52,6 +65,8 @@ const contactsSlice = createSlice({
 export default contactsSlice.reducer;
 export const {
   setContactsFiltered,
-  setFilterData,
   setDebouncedFilterData,
+  setCurrentPage,
+  setIndexOfLastContact,
+  setIndexOfFirstContact,
 } = contactsSlice.actions;
