@@ -1,15 +1,14 @@
 import React, { useCallback } from "react";
 import styles from "./Pagination.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { contactsFilteredSelector, getCurrentContacts } from "../Selectors";
+import { getCurrentContacts } from "../Selectors";
 import { setCurrentPage } from "../../reduxToolkit/toolkitSlice";
 
-export const Pagination = React.memo(() => {
+export const Pagination = React.memo(({ totalContacts }) => {
   const dispatch = useDispatch();
 
   const currentPage = useSelector((state) => state.toolkit.currentPage);
   const contactsPerPage = useSelector((state) => state.toolkit.contactsPerPage);
-  const totalContacts = useSelector(contactsFilteredSelector);
 
   const paginate = useCallback(
     (pageNumber) => dispatch(setCurrentPage(pageNumber)),

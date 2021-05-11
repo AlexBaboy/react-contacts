@@ -45,6 +45,7 @@ export const Contacts = () => {
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
   // filter
+  const contactsFiltered = useSelector(contactsFilteredSelector);
 
   // pagination
   const currentContacts = useSelector(getCurrentContacts);
@@ -84,7 +85,9 @@ export const Contacts = () => {
               return (
                 <>
                   <ContactsTable data={currentContacts} />
-                  <Pagination></Pagination>
+                  <Pagination
+                    totalContacts={contactsFiltered?.length}
+                  ></Pagination>
                 </>
               );
             if (dataViewMode === DATA_VIEW_MODES.GRID)
