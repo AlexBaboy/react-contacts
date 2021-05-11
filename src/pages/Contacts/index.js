@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const Contacts = () => {
+  console.log("38 Contacts");
   const classes = useStyles();
 
   const dispatch = useDispatch();

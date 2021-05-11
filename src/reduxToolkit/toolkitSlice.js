@@ -12,25 +12,17 @@ export const setContactsInitial = createAsyncThunk(
 const contactsSlice = createSlice({
   name: "contactsSlice",
   initialState: {
-    contactsInitial: [],
-    contactsFiltered: [],
+    list: [],
     isLoading: true,
     isError: false,
-    filterData: "",
     debouncedFilterData: "",
     currentPage: 1,
     contactsPerPage: 10,
   },
 
   reducers: {
-    setFilterData(state, action) {
-      state.filterData = action.payload;
-    },
     setDebouncedFilterData(state, action) {
       state.debouncedFilterData = action.payload;
-    },
-    setContactsFiltered(state, action) {
-      state.contactsFiltered = action.payload;
     },
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
@@ -42,8 +34,7 @@ const contactsSlice = createSlice({
       state.isLoading = true;
     });
     builder.addCase(setContactsInitial.fulfilled, (state, action) => {
-      state.contactsInitial = action.payload;
-      state.contactsFiltered = state.contactsInitial;
+      state.list = action.payload;
       state.isLoading = false;
     });
     builder.addCase(setContactsInitial.rejected, (state, action) => {
@@ -55,8 +46,4 @@ const contactsSlice = createSlice({
 });
 
 export default contactsSlice.reducer;
-export const {
-  setContactsFiltered,
-  setDebouncedFilterData,
-  setCurrentPage,
-} = contactsSlice.actions;
+export const { setDebouncedFilterData, setCurrentPage } = contactsSlice.actions;

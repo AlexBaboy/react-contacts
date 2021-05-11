@@ -1,8 +1,9 @@
 import { NATIONALITIES_HUMAN_NAME } from "../../constants/nationalities";
 
 export const contactsFilteredSelector = (state) => {
+  console.log("4 contactsFilteredSelector!");
   if (state?.toolkit?.debouncedFilterData) {
-    return state?.toolkit?.contactsInitial.filter((contact) => {
+    return state?.toolkit?.list.filter((contact) => {
       return (
         contact?.location?.city
           .toLowerCase()
@@ -16,7 +17,7 @@ export const contactsFilteredSelector = (state) => {
       );
     });
   } else {
-    return state?.toolkit?.contactsInitial;
+    return state?.toolkit?.list;
   }
 };
 
