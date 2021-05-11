@@ -18,10 +18,7 @@ import {
   setCurrentPage,
 } from "../../reduxToolkit/toolkitSlice";
 import { Search } from "../../components/Search";
-import {
-  contactsFilteredSelector,
-  getCurrentContacts,
-} from "../../components/Selectors";
+import { getCurrentContacts } from "../../components/Selectors";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -43,9 +40,6 @@ export const Contacts = () => {
   const isLoading = useSelector((state) => state.toolkit.isLoading);
   const isError = useSelector((state) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
-
-  // filter
-  const contactsFiltered = useSelector(contactsFilteredSelector);
 
   // pagination
   const currentContacts = useSelector(getCurrentContacts);
@@ -85,9 +79,7 @@ export const Contacts = () => {
               return (
                 <>
                   <ContactsTable data={currentContacts} />
-                  <Pagination
-                    totalContacts={contactsFiltered?.length}
-                  ></Pagination>
+                  <Pagination />
                 </>
               );
             if (dataViewMode === DATA_VIEW_MODES.GRID)
