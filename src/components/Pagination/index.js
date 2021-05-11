@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import styles from "./Pagination.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getCurrentContacts } from "../Selectors";
 import { setCurrentPage } from "../../reduxToolkit/toolkitSlice";
 
 export const Pagination = React.memo(({ totalContacts }) => {
