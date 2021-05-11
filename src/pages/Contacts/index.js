@@ -45,17 +45,9 @@ export const Contacts = () => {
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
   // filter
-  const contactsFiltered = useSelector(contactsFilteredSelector);
 
   // pagination
-  const currentPage = useSelector((state) => state.toolkit.currentPage);
-  const contactsPerPage = useSelector((state) => state.toolkit.contactsPerPage);
   const currentContacts = useSelector(getCurrentContacts);
-
-  const paginate = useCallback(
-    (pageNumber) => dispatch(setCurrentPage(pageNumber)),
-    [currentPage]
-  );
 
   React.useEffect(() => {
     dispatch(setContactsInitial());
@@ -92,12 +84,7 @@ export const Contacts = () => {
               return (
                 <>
                   <ContactsTable data={currentContacts} />
-                  <Pagination
-                    contactsPerPage={contactsPerPage}
-                    totalContacts={contactsFiltered?.length}
-                    paginate={paginate}
-                    currentPage={currentPage}
-                  ></Pagination>
+                  <Pagination></Pagination>
                 </>
               );
             if (dataViewMode === DATA_VIEW_MODES.GRID)

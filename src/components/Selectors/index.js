@@ -22,6 +22,7 @@ export const contactsFilteredSelector = (state) => {
 };
 
 export const getCurrentContacts = (state) => {
+  console.log("25 getCurrentContacts");
   const contactsFiltered = contactsFilteredSelector(state);
   const indexOfLastContact =
     state.toolkit.currentPage * state.toolkit.contactsPerPage;
