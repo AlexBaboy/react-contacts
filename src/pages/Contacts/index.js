@@ -41,7 +41,6 @@ export const Contacts = () => {
   const isError = useSelector((state) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
-  // pagination
   const currentContacts = useSelector(getCurrentContacts);
 
   React.useEffect(() => {
