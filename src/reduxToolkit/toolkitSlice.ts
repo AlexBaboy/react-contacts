@@ -18,6 +18,7 @@ const contactsSlice = createSlice({
     debouncedFilterData: "",
     currentPage: 1,
     contactsPerPage: 10,
+    exceptionText: "",
   },
 
   reducers: {
@@ -39,8 +40,9 @@ const contactsSlice = createSlice({
     });
     builder.addCase(setContactsInitial.rejected, (state, action) => {
       const { requestId } = action.meta;
-      state.exception = action.error;
-      state.currentRequestId = undefined;
+      state.isError = true;
+      state.exceptionText = action.error?.toString();
+      //state.currentRequestId = undefined;
     });
   },
 });

@@ -13,9 +13,12 @@ import { useDataViewMode } from "./useDataViewMode";
 
 import { Pagination } from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { setContactsInitial } from "../../reduxToolkit/toolkitSlice";
+import toolkitSlice, {
+  setContactsInitial,
+} from "../../reduxToolkit/toolkitSlice";
 import { Search } from "../../components/Search";
 import { getCurrentContacts } from "../../components/Selectors";
+import store, { RootState } from "../../reduxToolkit";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -28,12 +31,13 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+class toolkit {}
+
 export const Contacts = () => {
   console.log("38 Contacts");
   const classes = useStyles();
-
-  const isLoading = useSelector((state) => state.toolkit.isLoading);
-  const isError = useSelector((state) => state.toolkit.isError);
+  const isLoading = useSelector((state: RootState) => state.toolkit.isLoading);
+  const isError = useSelector((state: RootState) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
   const currentContacts = useSelector(getCurrentContacts);
