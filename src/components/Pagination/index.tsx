@@ -3,12 +3,17 @@ import styles from "./Pagination.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../reduxToolkit/toolkitSlice";
 import { contactsFilteredSelector } from "../Selectors";
+import { RootState } from "../../reduxToolkit";
 
 export const Pagination = React.memo(() => {
   const dispatch = useDispatch();
 
-  const currentPage = useSelector((state) => state.toolkit.currentPage);
-  const contactsPerPage = useSelector((state) => state.toolkit.contactsPerPage);
+  const currentPage = useSelector(
+    (state: RootState) => state.toolkit.currentPage
+  );
+  const contactsPerPage = useSelector(
+    (state: RootState) => state.toolkit.contactsPerPage
+  );
 
   const contactsFiltered = useSelector(contactsFilteredSelector);
 

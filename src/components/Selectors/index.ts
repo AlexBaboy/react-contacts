@@ -1,9 +1,10 @@
 import { NATIONALITIES_HUMAN_NAME } from "../../constants/nationalities";
+import { RootState } from "../../reduxToolkit";
 
-export const contactsFilteredSelector = (state) => {
+export const contactsFilteredSelector = (state: RootState) => {
   console.log("4 contactsFilteredSelector!");
   if (state?.toolkit?.debouncedFilterData) {
-    return state?.toolkit?.list.filter((contact) => {
+    return state?.toolkit?.list.filter((contact: object) => {
       return (
         contact?.location?.city
           .toLowerCase()
@@ -21,7 +22,7 @@ export const contactsFilteredSelector = (state) => {
   }
 };
 
-export const getCurrentContacts = (state) => {
+export const getCurrentContacts = (state: RootState) => {
   console.log("25 getCurrentContacts");
   const contactsFiltered = contactsFilteredSelector(state);
   const indexOfLastContact =
