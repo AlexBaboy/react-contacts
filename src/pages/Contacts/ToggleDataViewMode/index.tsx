@@ -7,21 +7,23 @@ import { DATA_VIEW_MODES } from "../constants";
 import PropTypes from "prop-types";
 import React from "react";
 
-export const ToggleDataViewMode = (
-  dataViewMode: { DATA_VIEW_MODES: any },
-  setDataViewMode: (arg0: any) => void
-) => {
+interface ToggleDataViewModeProps {
+  dataViewMode: typeof DATA_VIEW_MODES;
+  setDataViewMode: (a: { TABLE: string; GRID: string }) => void;
+}
+
+export const ToggleDataViewMode = (props: ToggleDataViewModeProps) => {
   const handleChange = useCallback(
-    (_, nextView) => {
-      setDataViewMode(nextView);
+    (_, nextView: typeof DATA_VIEW_MODES) => {
+      props.setDataViewMode(nextView);
     },
-    [setDataViewMode]
+    [props.setDataViewMode]
   );
 
   return (
     <ToggleButtonGroup
       orientation="horizontal"
-      value={dataViewMode}
+      value={props.dataViewMode}
       exclusive
       onChange={handleChange}
     >
