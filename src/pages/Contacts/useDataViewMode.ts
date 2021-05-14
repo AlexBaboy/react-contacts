@@ -2,15 +2,11 @@ import { useEffect, useState } from "react";
 import { DATA_VIEW_MODES } from "./constants";
 
 const getInitialDataViewMode = () => {
-  return (
-    (JSON.parse(
-      <string>localStorage.getItem("dataViewMode")
-    ) as typeof DATA_VIEW_MODES) || DATA_VIEW_MODES.TABLE
-  );
+  return localStorage.getItem("dataViewMode") || DATA_VIEW_MODES.TABLE;
 };
 
 export const useDataViewMode = () => {
-  const [dataViewMode, setDataViewMode] = useState<typeof DATA_VIEW_MODES>(
+  const [dataViewMode, setDataViewMode] = useState<string>(
     getInitialDataViewMode
   );
 
@@ -20,5 +16,5 @@ export const useDataViewMode = () => {
     return () => {};
   }, [dataViewMode]);
 
-  return [dataViewMode, setDataViewMode];
+  return [dataViewMode, setDataViewMode] as const;
 };

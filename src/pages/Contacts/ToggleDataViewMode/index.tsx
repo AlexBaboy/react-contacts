@@ -2,13 +2,14 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
-import { useCallback } from "react";
+import { SetStateAction, useCallback } from "react";
 import { DATA_VIEW_MODES } from "../constants";
 import React from "react";
+import { Dispatch } from "react";
 
 interface ToggleDataViewModeProps {
-  dataViewMode: typeof DATA_VIEW_MODES;
-  setDataViewMode: (fn: typeof DATA_VIEW_MODES) => void;
+  dataViewMode: string | Dispatch<SetStateAction<string>>;
+  setDataViewMode: Dispatch<SetStateAction<string>>;
 }
 
 export const ToggleDataViewMode: React.FC<ToggleDataViewModeProps> = ({
@@ -16,7 +17,7 @@ export const ToggleDataViewMode: React.FC<ToggleDataViewModeProps> = ({
   setDataViewMode,
 }) => {
   const handleChange = useCallback(
-    (_, nextView: typeof DATA_VIEW_MODES) => {
+    (_, nextView: string) => {
       setDataViewMode(nextView);
     },
     [setDataViewMode]

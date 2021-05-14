@@ -62,12 +62,9 @@ export const Contacts = () => {
         </Grid>
         <Grid item xs={12}>
           {(() => {
-            if (isLoading)
-              return (
-                <CircularProgress data-testid="contacts-loader">
-                  Loading...
-                </CircularProgress>
-              );
+            if (isLoading) {
+              return <CircularProgress>Loading...</CircularProgress>;
+            }
             if (isError)
               return <div data-testid="contacts-error">Error...</div>;
 
