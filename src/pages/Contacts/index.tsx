@@ -31,8 +31,6 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-class toolkit {}
-
 export const Contacts = () => {
   console.log("38 Contacts");
   const classes = useStyles();
@@ -56,7 +54,6 @@ export const Contacts = () => {
             <Typography variant="h4" component="h1">
               Contacts
             </Typography>
-
             <ToggleDataViewMode
               dataViewMode={dataViewMode}
               setDataViewMode={setDataViewMode}
