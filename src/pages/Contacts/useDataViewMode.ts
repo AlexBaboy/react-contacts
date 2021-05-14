@@ -10,7 +10,9 @@ const getInitialDataViewMode = () => {
 };
 
 export const useDataViewMode = () => {
-  const [dataViewMode, setDataViewMode] = useState(getInitialDataViewMode);
+  const [dataViewMode, setDataViewMode] = useState<typeof DATA_VIEW_MODES>(
+    getInitialDataViewMode
+  );
 
   useEffect(() => {
     localStorage.setItem("dataViewMode", dataViewMode.toString());
