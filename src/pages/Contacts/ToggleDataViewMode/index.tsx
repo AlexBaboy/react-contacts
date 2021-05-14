@@ -4,7 +4,6 @@ import ToggleButton from "@material-ui/lab/ToggleButton";
 import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 import { useCallback } from "react";
 import { DATA_VIEW_MODES } from "../constants";
-import PropTypes from "prop-types";
 import React from "react";
 
 interface ToggleDataViewModeProps {
@@ -12,18 +11,21 @@ interface ToggleDataViewModeProps {
   setDataViewMode: (a: { TABLE: string; GRID: string }) => void;
 }
 
-export const ToggleDataViewMode = (props: ToggleDataViewModeProps) => {
+export const ToggleDataViewMode: React.FC<ToggleDataViewModeProps> = ({
+  dataViewMode,
+  setDataViewMode,
+}) => {
   const handleChange = useCallback(
     (_, nextView: typeof DATA_VIEW_MODES) => {
-      props.setDataViewMode(nextView);
+      setDataViewMode(nextView);
     },
-    [props.setDataViewMode]
+    [setDataViewMode]
   );
 
   return (
     <ToggleButtonGroup
       orientation="horizontal"
-      value={props.dataViewMode}
+      value={dataViewMode}
       exclusive
       onChange={handleChange}
     >
@@ -43,10 +45,4 @@ export const ToggleDataViewMode = (props: ToggleDataViewModeProps) => {
       </ToggleButton>
     </ToggleButtonGroup>
   );
-};
-
-ToggleDataViewMode.propTypes = {
-  dataViewMode: PropTypes.oneOf([DATA_VIEW_MODES.TABLE, DATA_VIEW_MODES.GRID])
-    .isRequired,
-  setDataViewMode: PropTypes.func.isRequired,
 };
