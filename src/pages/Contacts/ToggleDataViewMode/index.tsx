@@ -8,7 +8,7 @@ import React from "react";
 
 interface ToggleDataViewModeProps {
   dataViewMode: typeof DATA_VIEW_MODES;
-  setDataViewMode: (a: { TABLE: string; GRID: string }) => void;
+  setDataViewMode: (fn: typeof DATA_VIEW_MODES) => void;
 }
 
 export const ToggleDataViewMode: React.FC<ToggleDataViewModeProps> = ({
