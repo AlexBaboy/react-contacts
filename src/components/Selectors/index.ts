@@ -1,10 +1,11 @@
 import { NATIONALITIES_HUMAN_NAME } from "../../constants/nationalities";
 import { RootState } from "../../reduxToolkit";
+import { Contact } from "../../Interfaces/Contact";
 
 export const contactsFilteredSelector = (state: RootState) => {
   console.log("4 contactsFilteredSelector!");
   if (state?.toolkit?.debouncedFilterData) {
-    return state?.toolkit?.list.filter((contact: object) => {
+    return state?.toolkit?.list.filter((contact: Contact) => {
       return (
         contact?.location?.city
           .toLowerCase()

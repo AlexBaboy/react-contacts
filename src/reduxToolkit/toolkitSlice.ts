@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const setContactsInitial = createAsyncThunk(
@@ -22,10 +22,10 @@ const contactsSlice = createSlice({
   },
 
   reducers: {
-    setDebouncedFilterData(state, action) {
+    setDebouncedFilterData(state, action: PayloadAction<string>) {
       state.debouncedFilterData = action.payload;
     },
-    setCurrentPage(state, action) {
+    setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
   },
@@ -34,10 +34,13 @@ const contactsSlice = createSlice({
     builder.addCase(setContactsInitial.pending, (state, action) => {
       state.isLoading = true;
     });
-    builder.addCase(setContactsInitial.fulfilled, (state, action) => {
-      state.list = action.payload;
-      state.isLoading = false;
-    });
+    builder.addCase(
+      setContactsInitial.fulfilled,
+      (state, action: PayloadAction<[]>) => {
+        state.list = action.payload;
+        state.isLoading = false;
+      }
+    );
     builder.addCase(setContactsInitial.rejected, (state, action) => {
       const { requestId } = action.meta;
       state.isError = true;

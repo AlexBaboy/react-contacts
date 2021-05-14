@@ -12,6 +12,7 @@ export interface Contact {
     city: string;
     state: string;
     postcode: string;
+    country: string;
     coordinates: {
       latitude: string;
       longitude: string;
