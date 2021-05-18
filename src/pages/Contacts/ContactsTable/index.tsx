@@ -14,6 +14,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { Typography } from "@material-ui/core";
 import { CopyToClipboard } from "../../../components/CopyToClipboard";
 import { NATIONALITIES_HUMAN_NAME } from "../../../constants/nationalities";
+import { Contact } from "../../../Interfaces/Contact";
 
 const useStyles = makeStyles({
   table: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const ContactsTable = ({ data }) => {
+export const ContactsTable: React.FC<[]> = ({ data: [] }) => {
   const classes = useStyles();
 
   return (
@@ -39,7 +40,7 @@ export const ContactsTable = ({ data }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((contact) => (
+          {data?.map((contact: Contact) => (
             <TableRow key={contact.login.uuid}>
               <TableCell component="th" scope="row">
                 <Avatar

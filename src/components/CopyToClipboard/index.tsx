@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 import { useCopyToClipboard } from "react-use";
@@ -18,7 +17,7 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const CopyToClipboard = React.memo(({ text }) => {
+export const CopyToClipboard: React.FC<string> = React.memo((text) => {
   const classes = useStyles();
   const [, copyToClipboard] = useCopyToClipboard();
   const [statusCopy, setStatusCopy] = useState("copy");
@@ -35,20 +34,13 @@ export const CopyToClipboard = React.memo(({ text }) => {
   return (
     <ClickAwayListener onClickAway={onClickAway}>
       <Tooltip title={statusCopy} placement="top-start" arrow>
-        <Button
-          display="flex"
-          alignitems="center"
-          className={classes.root}
-          onClick={onClickCopy}
-        >
-          <FileCopyOutlinedIcon fontSize="small" className={classes.icon} />
-          {text}
-        </Button>
+        <div>
+          <Button className={classes.root} onClick={onClickCopy}>
+            <FileCopyOutlinedIcon fontSize="small" className={classes.icon} />
+            {text}
+          </Button>
+        </div>
       </Tooltip>
     </ClickAwayListener>
   );
 });
-
-CopyToClipboard.propTypes = {
-  text: PropTypes.string.isRequired,
-};
