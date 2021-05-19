@@ -13,9 +13,7 @@ import { useDataViewMode } from "./useDataViewMode";
 
 import { Pagination } from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import toolkitSlice, {
-  setContactsInitial,
-} from "../../reduxToolkit/toolkitSlice";
+import { setContactsInitial } from "../../reduxToolkit/toolkitSlice";
 import { Search } from "../../components/Search";
 import { getCurrentContacts } from "../../components/Selectors";
 import store, { RootState } from "../../reduxToolkit";
