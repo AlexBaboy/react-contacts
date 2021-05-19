@@ -13,7 +13,7 @@ interface ToggleDataViewModeProps {
 }
 
 export const ToggleDataViewMode: React.FC<ToggleDataViewModeProps> = ({
-  dataViewMode,
+  dataViewMode = DATA_VIEW_MODES.TABLE,
   setDataViewMode,
 }) => {
   const handleChange = useCallback(

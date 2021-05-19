@@ -17,30 +17,32 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
-export const CopyToClipboard: React.FC<string> = React.memo((text) => {
-  const classes = useStyles();
-  const [, copyToClipboard] = useCopyToClipboard();
-  const [statusCopy, setStatusCopy] = useState("copy");
+export const CopyToClipboard: React.FC<{ text: string }> = React.memo(
+  ({ text }) => {
+    const classes = useStyles();
+    const [, copyToClipboard] = useCopyToClipboard();
+    const [statusCopy, setStatusCopy] = useState("copy");
 
-  const onClickCopy = useCallback(() => {
-    copyToClipboard(text);
-    setStatusCopy("copied");
-  }, [copyToClipboard, text]);
+    const onClickCopy = useCallback(() => {
+      copyToClipboard(text);
+      setStatusCopy("copied");
+    }, [copyToClipboard, text]);
 
-  const onClickAway = useCallback(() => {
-    setStatusCopy("copy");
-  }, [setStatusCopy]);
+    const onClickAway = useCallback(() => {
+      setStatusCopy("copy");
+    }, [setStatusCopy]);
 
-  return (
-    <ClickAwayListener onClickAway={onClickAway}>
-      <Tooltip title={statusCopy} placement="top-start" arrow>
-        <div>
-          <Button className={classes.root} onClick={onClickCopy}>
-            <FileCopyOutlinedIcon fontSize="small" className={classes.icon} />
-            {text}
-          </Button>
-        </div>
-      </Tooltip>
-    </ClickAwayListener>
-  );
-});
+    return (
+      <ClickAwayListener onClickAway={onClickAway}>
+        <Tooltip title={statusCopy} placement="top-start" arrow>
+          <div>
+            <Button className={classes.root} onClick={onClickCopy}>
+              <FileCopyOutlinedIcon fontSize="small" className={classes.icon} />
+              {text}
+            </Button>
+          </div>
+        </Tooltip>
+      </ClickAwayListener>
+    );
+  }
+);

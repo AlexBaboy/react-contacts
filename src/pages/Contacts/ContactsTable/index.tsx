@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const ContactsTable: React.FC<[]> = ({ data: [] }) => {
+export const ContactsTable = ({ data = [] }) => {
   const classes = useStyles();
 
   return (
@@ -40,7 +40,7 @@ export const ContactsTable: React.FC<[]> = ({ data: [] }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data?.map((contact: Contact) => (
+          {data.map((contact: Contact) => (
             <TableRow key={contact.login.uuid}>
               <TableCell component="th" scope="row">
                 <Avatar
@@ -74,9 +74,7 @@ export const ContactsTable: React.FC<[]> = ({ data: [] }) => {
                 <CopyToClipboard text={contact.phone} />
               </TableCell>
               <TableCell>
-                <CopyToClipboard
-                  text={"/" + contact.location.country + "/"}
-                ></CopyToClipboard>
+                <CopyToClipboard text={"/" + contact.location.country + "/"} />
                 <Typography>
                   {contact.location.city}, {contact.location.street.name}{" "}
                   {contact.location.street.number}

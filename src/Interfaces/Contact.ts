@@ -8,7 +8,10 @@ export interface Contact {
     last: string;
   };
   location: {
-    street: string;
+    street: {
+      number: number;
+      name: string;
+    };
     city: string;
     state: string;
     postcode: string;
@@ -51,5 +54,5 @@ export interface Contact {
     medium: string;
     thumbnail: string;
   };
-  nat: typeof NATIONALITIES;
+  nat: NATIONALITIES;
 }
