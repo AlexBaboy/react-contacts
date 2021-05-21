@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setContactsInitial } from "../../reduxToolkit/toolkitSlice";
 import { Search } from "../../components/Search";
 import { getCurrentContacts } from "../../components/Selectors";
-import store, { RootState } from "../../reduxToolkit";
+import { RootState } from "../../reduxToolkit";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -61,8 +61,11 @@ export const Contacts = () => {
         <Grid item xs={12}>
           {(() => {
             if (isLoading) {
-              // @ts-ignore
-              return <CircularProgress>Loading...</CircularProgress>;
+              return (
+                <CircularProgress variant={"determinate"}>
+                  Loading...
+                </CircularProgress>
+              );
             }
             if (isError)
               return <div data-testid="contacts-error">Error...</div>;
@@ -70,7 +73,7 @@ export const Contacts = () => {
             if (dataViewMode === DATA_VIEW_MODES.TABLE)
               return (
                 <>
-                  <ContactsTable data={currentContacts} />
+                  <ContactsTable />
                   <Pagination />
                 </>
               );

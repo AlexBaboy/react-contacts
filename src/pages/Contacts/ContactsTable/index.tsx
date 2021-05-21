@@ -14,7 +14,8 @@ import Avatar from "@material-ui/core/Avatar";
 import { Typography } from "@material-ui/core";
 import { CopyToClipboard } from "../../../components/CopyToClipboard";
 import { NATIONALITIES_HUMAN_NAME } from "../../../constants/nationalities";
-import { Contact } from "../../../Interfaces/Contact";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../reduxToolkit";
 
 const useStyles = makeStyles({
   table: {
@@ -22,7 +23,9 @@ const useStyles = makeStyles({
   },
 });
 
-export const ContactsTable = ({ data = [] }) => {
+const data = useSelector((state: RootState) => state.toolkit.list);
+
+export const ContactsTable = () => {
   const classes = useStyles();
 
   return (
@@ -40,7 +43,7 @@ export const ContactsTable = ({ data = [] }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((contact: Contact) => (
+          {data.map((contact) => (
             <TableRow key={contact.login.uuid}>
               <TableCell component="th" scope="row">
                 <Avatar

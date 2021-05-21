@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
+import { Contact } from "../Interfaces/Contact";
 
 export const setContactsInitial = createAsyncThunk(
   "contacts/setContactsInitial",
@@ -9,17 +10,29 @@ export const setContactsInitial = createAsyncThunk(
   }
 );
 
+interface IContactsState {
+  list: Contact[];
+  isLoading: boolean;
+  isError: boolean;
+  debouncedFilterData: string;
+  currentPage: number;
+  contactsPerPage: number;
+  exceptionText: string;
+}
+
+const contactsInitialState: IContactsState = {
+  list: [],
+  isLoading: true,
+  isError: false,
+  debouncedFilterData: "",
+  currentPage: 1,
+  contactsPerPage: 10,
+  exceptionText: "",
+};
+
 const contactsSlice = createSlice({
   name: "contactsSlice",
-  initialState: {
-    list: [],
-    isLoading: true,
-    isError: false,
-    debouncedFilterData: "",
-    currentPage: 1,
-    contactsPerPage: 10,
-    exceptionText: "",
-  },
+  initialState: contactsInitialState,
 
   reducers: {
     setDebouncedFilterData(state, action: PayloadAction<string>) {
