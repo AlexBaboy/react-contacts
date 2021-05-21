@@ -36,8 +36,6 @@ export const Contacts = () => {
   const isError = useSelector((state: RootState) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
-  const currentContacts = useSelector(getCurrentContacts);
-
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(setContactsInitial());
@@ -62,9 +60,7 @@ export const Contacts = () => {
           {(() => {
             if (isLoading) {
               return (
-                <CircularProgress variant={"determinate"}>
-                  Loading...
-                </CircularProgress>
+                <CircularProgress variant="determinate"></CircularProgress>
               );
             }
             if (isError)

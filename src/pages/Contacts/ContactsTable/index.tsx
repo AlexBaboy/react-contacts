@@ -23,10 +23,9 @@ const useStyles = makeStyles({
   },
 });
 
-const data = useSelector((state: RootState) => state.toolkit.list);
-
 export const ContactsTable = () => {
   const classes = useStyles();
+  const data = useSelector((state: RootState) => state.toolkit.list);
 
   return (
     <TableContainer component={Paper} data-testid="table-container">

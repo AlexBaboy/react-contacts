@@ -4,16 +4,16 @@ import { Contact } from "../../Interfaces/Contact";
 
 export const contactsFilteredSelector = (state: RootState) => {
   console.log("4 contactsFilteredSelector!");
-  if (state?.toolkit?.debouncedFilterData) {
+  if (state.toolkit.debouncedFilterData) {
     return state?.toolkit?.list.filter((contact: Contact) => {
       return (
-        contact?.location?.city
+        contact.location.city
           .toLowerCase()
           .includes(state?.toolkit?.debouncedFilterData) ||
-        contact?.location?.country
+        contact.location.country
           .toLowerCase()
           .includes(state?.toolkit?.debouncedFilterData) ||
-        NATIONALITIES_HUMAN_NAME[contact?.nat]
+        NATIONALITIES_HUMAN_NAME[contact.nat]
           ?.toLowerCase()
           .includes(state?.toolkit?.debouncedFilterData)
       );
