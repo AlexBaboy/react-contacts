@@ -59,9 +59,7 @@ export const Contacts = () => {
         <Grid item xs={12}>
           {(() => {
             if (isLoading) {
-              return (
-                <CircularProgress variant="determinate"></CircularProgress>
-              );
+              return <CircularProgress variant="static"></CircularProgress>;
             }
             if (isError)
               return <div data-testid="contacts-error">Error...</div>;

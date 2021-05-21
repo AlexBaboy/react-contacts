@@ -19,7 +19,7 @@ export const contactsFilteredSelector = (state: RootState) => {
       );
     });
   } else {
-    return state?.toolkit?.list;
+    return state.toolkit.list;
   }
 };
 
@@ -30,5 +30,8 @@ export const getCurrentContacts = (state: RootState) => {
     state.toolkit.currentPage * state.toolkit.contactsPerPage;
   const indexOfFirstContact =
     indexOfLastContact - state.toolkit.contactsPerPage;
+  console.log("33 contactsFiltered", contactsFiltered);
+  console.log("33 indexOfFirstContact", indexOfFirstContact);
+  console.log("33 indexOfLastContact", indexOfLastContact);
   return contactsFiltered.slice(indexOfFirstContact, indexOfLastContact);
 };

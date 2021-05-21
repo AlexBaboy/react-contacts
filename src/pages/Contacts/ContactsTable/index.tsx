@@ -16,6 +16,7 @@ import { CopyToClipboard } from "../../../components/CopyToClipboard";
 import { NATIONALITIES_HUMAN_NAME } from "../../../constants/nationalities";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../reduxToolkit";
+import { getCurrentContacts } from "../../../components/Selectors";
 
 const useStyles = makeStyles({
   table: {
@@ -25,7 +26,8 @@ const useStyles = makeStyles({
 
 export const ContactsTable = () => {
   const classes = useStyles();
-  const data = useSelector((state: RootState) => state.toolkit.list);
+  //const data = useSelector((state: RootState) => state.toolkit.list);
+  const data = useSelector(getCurrentContacts);
 
   return (
     <TableContainer component={Paper} data-testid="table-container">

@@ -15,8 +15,7 @@ export const Pagination = React.memo(() => {
     (state: RootState) => state.toolkit.contactsPerPage
   );
 
-  //const contactsFiltered = useSelector(contactsFilteredSelector);
-  const currentContacts = useSelector(getCurrentContacts);
+  const contactsFiltered = useSelector(contactsFilteredSelector);
 
   const paginate = useCallback(
     (pageNumber) => dispatch(setCurrentPage(pageNumber)),
@@ -26,7 +25,7 @@ export const Pagination = React.memo(() => {
   const pageNumbers = [];
   for (
     let i = 1;
-    i <= Math.ceil(currentContacts.length / contactsPerPage);
+    i <= Math.ceil(contactsFiltered.length / contactsPerPage);
     i++
   ) {
     pageNumbers.push(i);
