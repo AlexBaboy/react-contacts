@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 export const ContactsTable = () => {
   const classes = useStyles();
   const data = useSelector(getCurrentContacts);
-
+  console.log("29 ContactsTable");
   return (
     <TableContainer component={Paper} data-testid="table-container">
       <Table className={classes.table} aria-label="contacts table">

@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import toolkitSlice from "./toolkitSlice";
+import contactsStore from "./contacts";
 import { useDispatch } from "react-redux";
 
 const rootReducer = combineReducers({
-  toolkit: toolkitSlice,
+  toolkit: contactsStore,
 });
 
 const store = configureStore({

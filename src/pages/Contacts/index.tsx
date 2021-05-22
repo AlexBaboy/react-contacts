@@ -13,10 +13,9 @@ import { useDataViewMode } from "./useDataViewMode";
 
 import { Pagination } from "../../components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { setContactsInitial } from "../../reduxToolkit/toolkitSlice";
+import { setContactsInitial } from "../../store/contacts";
 import { Search } from "../../components/Search";
-import { getCurrentContacts } from "../../components/Selectors";
-import { RootState } from "../../reduxToolkit";
+import { RootState } from "../../store";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const Contacts = () => {
-  console.log("38 Contacts");
+  console.log("32 Contacts");
   const classes = useStyles();
   const isLoading = useSelector((state: RootState) => state.toolkit.isLoading);
   const isError = useSelector((state: RootState) => state.toolkit.isError);
@@ -59,7 +58,9 @@ export const Contacts = () => {
         <Grid item xs={12}>
           {(() => {
             if (isLoading) {
-              return <CircularProgress variant="static"></CircularProgress>;
+              return (
+                <CircularProgress variant="determinate"></CircularProgress>
+              );
             }
             if (isError)
               return <div data-testid="contacts-error">Error...</div>;

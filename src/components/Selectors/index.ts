@@ -1,9 +1,9 @@
 import { NATIONALITIES_HUMAN_NAME } from "../../constants/nationalities";
-import { RootState } from "../../reduxToolkit";
+import { RootState } from "../../store";
 import { Contact } from "../../Interfaces/Contact";
 
 export const contactsFilteredSelector = (state: RootState) => {
-  console.log("4 contactsFilteredSelector!");
+  console.log("6 selectors - function: contactsFilteredSelector!");
   if (state.toolkit.debouncedFilterData) {
     return state?.toolkit?.list.filter((contact: Contact) => {
       return (
@@ -24,14 +24,12 @@ export const contactsFilteredSelector = (state: RootState) => {
 };
 
 export const getCurrentContacts = (state: RootState) => {
-  console.log("25 getCurrentContacts");
+  console.log("27 selectors - function: getCurrentContacts");
   const contactsFiltered = contactsFilteredSelector(state);
+  console.log("29 contactsFiltered", contactsFiltered);
   const indexOfLastContact =
     state.toolkit.currentPage * state.toolkit.contactsPerPage;
   const indexOfFirstContact =
     indexOfLastContact - state.toolkit.contactsPerPage;
-  console.log("33 contactsFiltered", contactsFiltered);
-  console.log("33 indexOfFirstContact", indexOfFirstContact);
-  console.log("33 indexOfLastContact", indexOfLastContact);
   return contactsFiltered.slice(indexOfFirstContact, indexOfLastContact);
 };

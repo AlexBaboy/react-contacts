@@ -1,6 +1,6 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import { setDebouncedFilterData } from "../../reduxToolkit/toolkitSlice";
+import { setDebouncedFilterData } from "../../store/contacts";
 import { useDispatch } from "react-redux";
 import { useDebouncedCallback } from "use-debounce";
 
