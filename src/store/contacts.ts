@@ -55,10 +55,8 @@ const contactsSlice = createSlice({
       }
     );
     builder.addCase(setContactsInitial.rejected, (state, action) => {
-      const { requestId } = action.meta;
       state.isError = true;
       state.exceptionText = action.error?.toString();
-      //state.currentRequestId = undefined;
     });
   },
 });
