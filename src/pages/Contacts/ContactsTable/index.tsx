@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 
 export const ContactsTable = () => {
   const classes = useStyles();
-  const data = useSelector(getCurrentContacts);
+  const contactList = useSelector(getCurrentContacts);
   console.log("29 ContactsTable");
   return (
     <TableContainer component={Paper} data-testid="table-container">
@@ -42,7 +42,7 @@ export const ContactsTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((contact) => (
+          {contactList.map((contact) => (
             <TableRow key={contact.login.uuid}>
               <TableCell component="th" scope="row">
                 <Avatar
