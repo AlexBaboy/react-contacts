@@ -40,6 +40,19 @@ export const contactsFilteredSelector = createSelector(
         })
       : list
 );
+/*
+
+export const getCurrentContacts = createSelector(
+    (state: RootState) => contactsFilteredSelector(state),
+    (state) => state.toolkit.currentPage * state.toolkit.contactsPerPage,
+
+    const indexOfLastContact =
+
+    const indexOfFirstContact =
+        indexOfLastContact - state.toolkit.contactsPerPage;
+    return contactsFiltered.slice(indexOfFirstContact, indexOfLastContact);
+};
+*/
 
 export const getCurrentContacts = (state: RootState) => {
   console.log("27 selectors - function: getCurrentContacts");
