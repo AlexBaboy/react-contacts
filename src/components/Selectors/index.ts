@@ -25,22 +25,20 @@ import { createSelector } from "reselect";
 };*/
 
 export const contactsFilteredSelector = createSelector(
-    list => state.toolkit.list,
-    contactsFiltered => state.toolkit.debouncedFilterData ?
-        state?.toolkit?.list.filter((contact: Contact) => {
+  (state: RootState) => state.toolkit.list,
+  (state) => state.toolkit.debouncedFilterData,
+  (list, debouncedData) =>
+    debouncedData
+      ? list.filter((contact: Contact) => {
           return (
-              contact.location.city
-                  .toLowerCase()
-                  .includes(state?.toolkit?.debouncedFilterData) ||
-              contact.location.country
-                  .toLowerCase()
-                  .includes(state?.toolkit?.debouncedFilterData) ||
-              NATIONALITIES_HUMAN_NAME[contact.nat]
-                  ?.toLowerCase()
-                  .includes(state?.toolkit?.debouncedFilterData)
+            contact.location.city.toLowerCase().includes(debouncedData) ||
+            contact.location.country.toLowerCase().includes(debouncedData) ||
+            NATIONALITIES_HUMAN_NAME[contact.nat]
+              ?.toLowerCase()
+              .includes(debouncedData)
           );
-          :
-          state.toolkit.list
+        })
+      : list
 );
 
 export const getCurrentContacts = (state: RootState) => {
