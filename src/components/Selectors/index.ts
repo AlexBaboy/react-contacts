@@ -3,27 +3,6 @@ import { RootState } from "../../store";
 import { Contact } from "../../Interfaces/Contact";
 import { createSelector } from "reselect";
 
-/*export const contactsFilteredSelector = (state: RootState) => {
-  console.log("6 selectors - function: contactsFilteredSelector!");
-  if (state.toolkit.debouncedFilterData) {
-    return state?.toolkit?.list.filter((contact: Contact) => {
-      return (
-        contact.location.city
-          .toLowerCase()
-          .includes(state?.toolkit?.debouncedFilterData) ||
-        contact.location.country
-          .toLowerCase()
-          .includes(state?.toolkit?.debouncedFilterData) ||
-        NATIONALITIES_HUMAN_NAME[contact.nat]
-          ?.toLowerCase()
-          .includes(state?.toolkit?.debouncedFilterData)
-      );
-    });
-  } else {
-    return state.toolkit.list;
-  }
-};*/
-
 export const contactsFilteredSelector = createSelector(
   (state: RootState) => state.toolkit.list,
   (state) => state.toolkit.debouncedFilterData,
@@ -40,21 +19,18 @@ export const contactsFilteredSelector = createSelector(
         })
       : list
 );
-/*
 
 export const getCurrentContacts = createSelector(
     (state: RootState) => contactsFilteredSelector(state),
     (state) => state.toolkit.currentPage * state.toolkit.contactsPerPage,
+    (state) => state.toolkit.currentPage * state.toolkit.contactsPerPage - state.toolkit.contactsPerPage,
+    (contactsFiltered, indexOfLastContact, indexOfFirstContact) =>
+        contactsFiltered.slice(indexOfFirstContact, indexOfLastContact)
+)
 
-    const indexOfLastContact =
 
-    const indexOfFirstContact =
-        indexOfLastContact - state.toolkit.contactsPerPage;
-    return contactsFiltered.slice(indexOfFirstContact, indexOfLastContact);
-};
-*/
 
-export const getCurrentContacts = (state: RootState) => {
+/*export const getCurrentContacts = (state: RootState) => {
   console.log("27 selectors - function: getCurrentContacts");
   const contactsFiltered = contactsFilteredSelector(state);
   console.log("29 contactsFiltered", contactsFiltered);
@@ -63,4 +39,4 @@ export const getCurrentContacts = (state: RootState) => {
   const indexOfFirstContact =
     indexOfLastContact - state.toolkit.contactsPerPage;
   return contactsFiltered.slice(indexOfFirstContact, indexOfLastContact);
-};
+};*/
