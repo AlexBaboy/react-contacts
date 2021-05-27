@@ -12,13 +12,12 @@ export const contactsFilteredSelector = createSelector(
           return (
             contact.location.city.toLowerCase().includes(debouncedData) ||
             contact.location.country.toLowerCase().includes(debouncedData) ||
-            NATIONALITIES_HUMAN_NAME[contact.nat]
-              ?.toLowerCase()
-              .includes(debouncedData)
+            NATIONALITIES_HUMAN_NAME[contact.nat].toLowerCase().includes(debouncedData)
           );
         })
       : list
 );
+
 
 export const getCurrentContacts = createSelector(
     (state: RootState) => contactsFilteredSelector(state),
@@ -27,16 +26,3 @@ export const getCurrentContacts = createSelector(
     (contactsFiltered, indexOfLastContact, indexOfFirstContact) =>
         contactsFiltered.slice(indexOfFirstContact, indexOfLastContact)
 )
-
-
-
-/*export const getCurrentContacts = (state: RootState) => {
-  console.log("27 selectors - function: getCurrentContacts");
-  const contactsFiltered = contactsFilteredSelector(state);
-  console.log("29 contactsFiltered", contactsFiltered);
-  const indexOfLastContact =
-    state.toolkit.currentPage * state.toolkit.contactsPerPage;
-  const indexOfFirstContact =
-    indexOfLastContact - state.toolkit.contactsPerPage;
-  return contactsFiltered.slice(indexOfFirstContact, indexOfLastContact);
-};*/
