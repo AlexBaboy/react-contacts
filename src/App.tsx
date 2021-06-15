@@ -13,11 +13,9 @@ export const App: React.FC = () => {
           <Switch>
             <Provider store={store}>
                 <NavBar />
-
                 <Route component={Contacts} path='/' />
                 <Route component={Info} path='/info' />
                 <Route component={About} path='/about' />
-
             </Provider>
           </Switch>
       </BrowserRouter>
