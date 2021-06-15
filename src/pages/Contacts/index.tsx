@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setContactsInitial } from "../../store/contacts";
 import { Search } from "../../components/Search";
 import { RootState } from "../../store";
-import {NavBar} from "../../components/NavBar";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
