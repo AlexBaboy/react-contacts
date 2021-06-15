@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setContactsInitial } from "../../store/contacts";
 import { Search } from "../../components/Search";
 import { RootState } from "../../store";
+import {NavLink} from "react-router-dom";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) =>
 );
 
 export const Contacts = () => {
-  console.log("32 Contacts");
+
   const classes = useStyles();
   const isLoading = useSelector((state: RootState) => state.toolkit.isLoading);
   const isError = useSelector((state: RootState) => state.toolkit.isError);
@@ -47,8 +48,14 @@ export const Contacts = () => {
         <Grid item xs={12} className={classes.headContainer}>
           <Box display="flex" justifyContent="space-between">
             <Typography variant="h4" component="h1">
-              Contacts
+                <NavLink to='/' exact>Contacts</NavLink>
             </Typography>
+              <Typography variant="h4" component="h1">
+                  <NavLink to='/info'>Info</NavLink>
+              </Typography>
+              <Typography variant="h4" component="h1">
+                  <NavLink to='/about'>About</NavLink>
+              </Typography>
             <ToggleDataViewMode
               dataViewMode={dataViewMode}
               setDataViewMode={setDataViewMode}
