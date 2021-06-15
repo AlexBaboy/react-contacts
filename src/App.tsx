@@ -10,7 +10,6 @@ export const App: React.FC = () => {
   return (
       <BrowserRouter>
         <Provider store={store}>
-          <Contacts />
             <Switch>
                 <Route component={Contacts} path="/" />
                 <Route component={Info} path="/info" />
