@@ -3,11 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 
-import Typography from "@material-ui/core/Typography";
 import { ContactsTable } from "./ContactsTable";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { Box } from "@material-ui/core";
-import { ToggleDataViewMode } from "./ToggleDataViewMode";
 import { DATA_VIEW_MODES } from "./constants";
 import { useDataViewMode } from "./useDataViewMode";
 
@@ -16,7 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setContactsInitial } from "../../store/contacts";
 import { Search } from "../../components/Search";
 import { RootState } from "../../store";
-import {NavLink} from "react-router-dom";
+import {NavBar} from "../../components/NavBar";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -45,23 +42,7 @@ export const Contacts = () => {
     <Container className={classes.root}>
       <Search />
       <Grid container spacing={3}>
-        <Grid item xs={12} className={classes.headContainer}>
-          <Box display="flex" justifyContent="space-between">
-            <Typography variant="h4" component="h1">
-                <NavLink to='/' exact>Contacts</NavLink>
-            </Typography>
-              <Typography variant="h4" component="h1">
-                  <NavLink to='/info'>Info</NavLink>
-              </Typography>
-              <Typography variant="h4" component="h1">
-                  <NavLink to='/about'>About</NavLink>
-              </Typography>
-            <ToggleDataViewMode
-              dataViewMode={dataViewMode}
-              setDataViewMode={setDataViewMode}
-            />
-          </Box>
-        </Grid>
+        <NavBar />
         <Grid item xs={12}>
           {(() => {
             if (isLoading) {
