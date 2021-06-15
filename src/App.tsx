@@ -13,7 +13,7 @@ export const App: React.FC = () => {
           <Switch>
             <Provider store={store}>
                 <NavBar />
-                <Route component={Contacts} path='/' />
+                <Route component={Contacts} path='/' exact />
                 <Route component={Info} path='/info' />
                 <Route component={About} path='/about' />
             </Provider>
