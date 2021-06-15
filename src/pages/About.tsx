@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const About: React.FC = () => {
+    console.log("About component!")
     return (
         <>
             <h2>About</h2>

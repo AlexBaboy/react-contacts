@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const Info: React.FC = () => {
+    console.log("Info component!")
     return (
         <>
             <h2>Info page</h2>

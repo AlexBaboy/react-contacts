@@ -42,7 +42,7 @@ export const Contacts = () => {
     <Container className={classes.root}>
       <Search />
       <Grid container spacing={3}>
-        <NavBar />
+
         <Grid item xs={12}>
           {(() => {
             if (isLoading) {
