@@ -4,10 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../store/contacts";
 import { contactsFilteredSelector } from "../Selectors";
 import { RootState } from "../../store";
+import {StyledPaginationItem} from "../styledComponents/StyledPaginationItem";
+import {StyledPaginationWrapper} from "../styledComponents/StyledPaginationWrapper";
 
 export const Pagination = React.memo(() => {
   const dispatch = useDispatch();
-  console.log("10 Pagination");
+
   const currentPage = useSelector(
     (state: RootState) => state.toolkit.currentPage
   );
@@ -33,12 +35,11 @@ export const Pagination = React.memo(() => {
 
   return (
     <div>
-      <nav>
+      <StyledPaginationWrapper>
         <ul className={styles.ulStyle}>
           {pageNumbers.map((number) => (
             <li key={number}>
-              <a
-                href="!#"
+              <StyledPaginationItem
                 className={
                   currentPage === number
                     ? styles.currentPageNum
@@ -47,11 +48,11 @@ export const Pagination = React.memo(() => {
                 onClick={() => paginate(number)}
               >
                 {number}
-              </a>
+              </StyledPaginationItem>
             </li>
           ))}
         </ul>
-      </nav>
+      </StyledPaginationWrapper>
     </div>
   );
 });
