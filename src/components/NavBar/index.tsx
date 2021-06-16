@@ -14,11 +14,6 @@ const NavWrapper = styled.div`
   width: calc(100% + 24px);
 `
 
-const LinkWrapper = styled.a`
-  color: black;
-  text-decoration: none;  
-`
-
 export const NavBar: React.FC = () => {
 
     const useStyles = makeStyles((theme) =>
@@ -41,23 +36,19 @@ export const NavBar: React.FC = () => {
                 <nav>
                     <Grid item xs={12} className={classes.headContainer}>
                         <Box display="flex" justifyContent="space-between" gridGap="2rem">
-
-                                <Typography variant="h4" component="h1">
-                                    <LinkWrapper>
-                                        <NavLink to='/'>Contacts</NavLink>
-                                    </LinkWrapper>
-                                </Typography>
-                                <Typography variant="h4" component="h1">
-                                    <NavLink to='/info'>Info</NavLink>
-                                </Typography>
-                                <Typography variant="h4" component="h1">
-                                    <NavLink to='/about'>About</NavLink>
-                                </Typography>
-                                <ToggleDataViewMode
-                                    dataViewMode={dataViewMode}
-                                    setDataViewMode={setDataViewMode}
-                                />
-
+                            <Typography variant="h4" component="h1">
+                                <NavLink to='/'>Contacts</NavLink>
+                            </Typography>
+                            <Typography variant="h4" component="h1">
+                                <NavLink to='/info'>Info</NavLink>
+                            </Typography>
+                            <Typography variant="h4" component="h1">
+                                <NavLink to='/about'>About</NavLink>
+                            </Typography>
+                            <ToggleDataViewMode
+                                dataViewMode={dataViewMode}
+                                setDataViewMode={setDataViewMode}
+                            />
                         </Box>
                     </Grid>
                 </nav>
