@@ -7,7 +7,7 @@ export const ErrorPage: React.FC = () => {
 
     return (
         <Container maxWidth="md">
-            <StyledH2 color={"red"} font-size={"36px"}>
+            <StyledH2 color={"red"} fontSize={"36px"}>
                 No such page!
             </StyledH2>
         </Container>
