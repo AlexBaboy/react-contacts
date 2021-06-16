@@ -27,7 +27,7 @@ export const NavBar: React.FC = () => {
     );
 
     const classes = useStyles();
-    const [dataViewMode, setDataViewMode] = useDataViewMode();
+
 
     return (
         <Container maxWidth="md">
@@ -44,10 +44,7 @@ export const NavBar: React.FC = () => {
                             <Typography variant="h4" component="h1">
                                 <NavLink to='/about'>About</NavLink>
                             </Typography>
-                            <ToggleDataViewMode
-                                dataViewMode={dataViewMode}
-                                setDataViewMode={setDataViewMode}
-                            />
+
                         </Box>
                     </Grid>
                 </nav>

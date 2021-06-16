@@ -55,13 +55,20 @@ export const Contacts = () => {
             if (dataViewMode === DATA_VIEW_MODES.TABLE)
               return (
                 <>
+                    <div data-testid="table-container">table</div>
                   <ContactsTable />
                   <Pagination />
                 </>
               );
             if (dataViewMode === DATA_VIEW_MODES.GRID)
-              return <div data-testid="grid-container">grid</div>;
-            return null;
+              return (
+                  <>
+                      <div data-testid="grid-container">grid</div>
+                      <ContactsTable />
+                      <Pagination />
+                  </>
+              );
+              return null;
           })()}
         </Grid>
       </Grid>

@@ -16,6 +16,8 @@ import { CopyToClipboard } from "../../../components/CopyToClipboard";
 import { NATIONALITIES_HUMAN_NAME } from "../../../constants/nationalities";
 import { useSelector } from "react-redux";
 import { getCurrentContacts } from "../../../components/Selectors";
+import {ToggleDataViewMode} from "../ToggleDataViewMode";
+import {useDataViewMode} from "../useDataViewMode";
 
 const useStyles = makeStyles({
   table: {
@@ -26,9 +28,15 @@ const useStyles = makeStyles({
 export const ContactsTable = () => {
   const classes = useStyles();
   const contactList = useSelector(getCurrentContacts);
-
+  const [dataViewMode, setDataViewMode] = useDataViewMode();
   return (
     <TableContainer component={Paper} data-testid="table-container">
+
+      <ToggleDataViewMode
+          dataViewMode={dataViewMode}
+          setDataViewMode={setDataViewMode}
+      />
+
       <Table className={classes.table} aria-label="contacts table">
         <TableHead>
           <TableRow>
