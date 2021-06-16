@@ -11,7 +11,6 @@ import Container from "@material-ui/core/Container";
 
 const NavWrapper = styled.div`
   padding-top: 2rem;
-  width: calc(100% + 24px);
 `
 
 export const NavBar: React.FC = () => {
