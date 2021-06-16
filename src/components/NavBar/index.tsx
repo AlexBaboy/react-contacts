@@ -2,10 +2,10 @@ import React from 'react'
 import {Box} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import {NavLink} from "react-router-dom";
-import {ToggleDataViewMode} from "../../pages/Contacts/ToggleDataViewMode";
+
 import Grid from "@material-ui/core/Grid";
 import {createStyles, makeStyles} from "@material-ui/core/styles";
-import {useDataViewMode} from "../../pages/Contacts/useDataViewMode";
+
 import styled from 'styled-components'
 import Container from "@material-ui/core/Container";
 
@@ -27,7 +27,6 @@ export const NavBar: React.FC = () => {
     );
 
     const classes = useStyles();
-
 
     return (
         <Container maxWidth="md">
