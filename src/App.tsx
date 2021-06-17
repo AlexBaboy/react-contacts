@@ -17,7 +17,7 @@ export const App: React.FC = () => {
           <Route component={Contacts} path="/" exact />
           <Route component={Info} path="/info" exact />
           <Route component={About} path="/about" exact />
-          <Route component={ErrorPage} exact />
+          <Route component={ErrorPage} />
         </Provider>
       </Switch>
     </BrowserRouter>
