@@ -1,15 +1,14 @@
-import React from 'react'
+import React from "react";
 import Container from "@material-ui/core/Container";
-import {StyledH2} from "../components/styledComponents/StyledH2";
-import {StyledP} from "../components/styledComponents/StyledP";
+import {
+  StyledH2,
+  StyledH2Error,
+} from "../components/styledComponents/StyledH2";
 
 export const ErrorPage: React.FC = () => {
-
-    return (
-        <Container maxWidth="md">
-            <StyledH2 color={"red"} fontSize={"36px"}>
-                No such page!
-            </StyledH2>
-        </Container>
-    )
-}
+  return (
+    <Container maxWidth="md">
+      <StyledH2Error color={"red"}>No such page!</StyledH2Error>
+    </Container>
+  );
+};
