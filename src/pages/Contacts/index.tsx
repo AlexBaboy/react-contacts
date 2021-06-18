@@ -32,6 +32,8 @@ export const Contacts = () => {
   const isError = useSelector((state: RootState) => state.toolkit.isError);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
 
+  console.log("Contacts dataViewMode", dataViewMode)
+
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(setContactsInitial());
@@ -55,7 +57,7 @@ export const Contacts = () => {
             if (dataViewMode === DATA_VIEW_MODES.TABLE)
               return (
                 <>
-                    <div data-testid="table-container">table</div>
+                    <div data-testid="table-container">{dataViewMode}</div>
                   <ContactsTable />
                   <Pagination />
                 </>
@@ -63,7 +65,7 @@ export const Contacts = () => {
             if (dataViewMode === DATA_VIEW_MODES.GRID)
               return (
                   <>
-                      <div data-testid="grid-container">grid</div>
+                      <div data-testid="grid-container">{dataViewMode}</div>
                       <ContactsTable />
                       <Pagination />
                   </>
