@@ -2,8 +2,22 @@ import React from 'react'
 import {StyledH2} from "../components/styledComponents/StyledH2";
 import Container from "@material-ui/core/Container";
 import {StyledP} from "../components/styledComponents/StyledP";
+import {useForm} from "react-hook-form";
+import {StyledText} from "../components/styledComponents/StyledText";
+import {StyledForm} from "../components/styledComponents/StyledForm";
+import {StyledH3} from "../components/styledComponents/StyledH3";
+import {StyledTextarea} from "../components/styledComponents/StyledTextarea";
+import {StyledSubmit} from "../components/styledComponents/StyledSubmit";
 
 export const About: React.FC = () => {
+
+    const {
+        register,
+        handleSubmit,
+        formState: {errors}
+    } = useForm();
+
+    const onSubmit = (data:any) => console.log('sended:', data)
 
     return (
         <Container maxWidth="md">
@@ -15,6 +29,23 @@ export const About: React.FC = () => {
                 voluptate? Cumque dolorum earum eligendi error harum mollitia temporibus veniam. Architecto asperiores atque blanditiis consequuntur corporis culpa cupiditate
                 dignissimos dolore doloribus expedita facere fuga fugiat fugit harum id impedit, incidunt itaque libero magnam magni molestiae mollitia nulla numquam obcaecati
                 odio provident quae quas qui quia, quisquam quod recusandae rem sed similique soluta ut voluptatum? Molestiae neque sequi temporibus totam!         </StyledP>
+            <div>
+                <StyledForm onSubmit={handleSubmit(onSubmit)}>
+                    <StyledH3>Contact us</StyledH3>
+
+                    <StyledText color={'black'} fontSize={'16px'} type='text' placeholder='subject'
+                                     {...register('Subject', {required: true, maxLength: 15})} />
+                    {errors.subject && <i><b>Field subject is required field no more than 15 symbols</b></i>}
+
+                    <StyledText color={'black'} fontSize={'16px'} type='text' placeholder='Age' {...register('age', {required: true, pattern: /\d?\d/, min: 18, max: 99})} />
+                    {errors.age && <i><b>Field age is required field, min value = 18 and max = 99</b></i>}
+
+                    <StyledTextarea color={'black'} fontSize={'16px'} placeholder='Message' {...register('message', {required: true})}  />
+                    {errors.message && <i><b>Field message is required field</b></i>}
+
+                    <StyledSubmit type="submit">submit</StyledSubmit>
+                </StyledForm>
+            </div>
         </Container>
     )
 }
