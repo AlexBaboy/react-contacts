@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage } from "../../store/contacts";
 import { contactsFilteredSelector } from "../Selectors";
 import { RootState } from "../../store";
-import {StyledPaginationItem} from "../styledComponents/StyledPaginationItem";
-import {StyledPaginationWrapper} from "../styledComponents/StyledPaginationWrapper";
+import {StyledPaginationItem} from "../ui/StyledPaginationItem";
+import {StyledPaginationWrapper} from "../ui/StyledPaginationWrapper";
 
 export const Pagination = React.memo(() => {
   const dispatch = useDispatch();

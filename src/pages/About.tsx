@@ -1,13 +1,13 @@
 import React from 'react'
-import {StyledH2} from "../components/styledComponents/StyledH2";
+import {StyledH2} from "../components/ui/StyledH2";
 import Container from "@material-ui/core/Container";
-import {StyledP} from "../components/styledComponents/StyledP";
+import {StyledP} from "../components/ui/StyledP";
 import {useForm} from "react-hook-form";
-import {StyledText} from "../components/styledComponents/StyledText";
-import {StyledForm} from "../components/styledComponents/StyledForm";
-import {StyledH3} from "../components/styledComponents/StyledH3";
-import {StyledTextarea} from "../components/styledComponents/StyledTextarea";
-import {StyledSubmit} from "../components/styledComponents/StyledSubmit";
+import {StyledText} from "../components/ui/StyledText";
+import {StyledForm} from "../components/ui/StyledForm";
+import {StyledH3} from "../components/ui/StyledH3";
+import {StyledTextarea} from "../components/ui/StyledTextarea";
+import {StyledSubmit} from "../components/ui/StyledSubmit";
 
 export const About: React.FC = () => {
 

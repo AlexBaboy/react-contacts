@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
-import { StyledH2Error } from "../components/styledComponents/StyledH2";
+import { StyledH2Error } from "../components/ui/StyledH2";
 
 
 export const ErrorPage: React.FC = () => {

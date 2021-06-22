@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from "@material-ui/core/Container";
-import {StyledH2} from "../components/styledComponents/StyledH2";
-import {StyledP} from "../components/styledComponents/StyledP";
+import {StyledH2} from "../components/ui/StyledH2";
+import {StyledP} from "../components/ui/StyledP";
 
 export const Info: React.FC = () => {
 
