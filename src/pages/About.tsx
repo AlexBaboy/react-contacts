@@ -14,23 +14,16 @@ export const About: React.FC = () => {
     const {
         register,
         handleSubmit,
-        formState: {errors, isDirty},
+        formState: {errors, isValid},
         trigger
     } = useForm({
-        mode: "onSubmit",
-        reValidateMode: 'onChange'
+        mode: "onChange",
+        reValidateMode: 'onSubmit'
     });
 
     const onSubmit = (data:any) => {
         console.log('sended:', data)
     }
-
-    React.useEffect(()=> {
-        console.log("trigger",trigger)
-        console.log("register",register)
-        console.log("errors",errors)
-        console.log("errors.length", errors.length)
-    },[])
 
     return (
         <Container maxWidth="md">
@@ -56,7 +49,7 @@ export const About: React.FC = () => {
                     <StyledTextarea color={'black'} fontSize={'16px'} placeholder='Message' {...register('message', {required: true})}  />
                     {errors.message && <i><b>Field message is required field</b></i>}
 
-                    <StyledSubmit type="submit" disabled={!isDirty || Object.keys(errors).length > 0}>submit</StyledSubmit>
+                    <StyledSubmit type="submit" disabled={!isValid || Object.keys(errors).length > 0}>submit</StyledSubmit>
                 </StyledForm>
             </div>
         </Container>
