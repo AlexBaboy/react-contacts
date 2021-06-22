@@ -15,10 +15,9 @@ export const About: React.FC = () => {
         register,
         handleSubmit,
         formState: {errors, isValid},
-        trigger
     } = useForm({
-        mode: "onChange",
-        reValidateMode: 'onSubmit'
+        mode: "onTouched",
+        reValidateMode: "onSubmit"
     });
 
     const onSubmit = (data:any) => {
