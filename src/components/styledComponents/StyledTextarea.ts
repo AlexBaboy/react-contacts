@@ -11,4 +11,5 @@ export const StyledTextarea = styled.textarea<StyledTextareaProps>`
   font-size: ${(props) => props.fontSize || "16px"}; 
   padding: 10px;
   border-radius: 5px;
+  border: 1px solid black;
 `;

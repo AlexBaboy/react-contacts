@@ -14,10 +14,23 @@ export const About: React.FC = () => {
     const {
         register,
         handleSubmit,
-        formState: {errors}
-    } = useForm();
+        formState: {errors, isDirty},
+        trigger
+    } = useForm({
+        mode: "onSubmit",
+        reValidateMode: 'onChange'
+    });
 
-    const onSubmit = (data:any) => console.log('sended:', data)
+    const onSubmit = (data:any) => {
+        console.log('sended:', data)
+    }
+
+    React.useEffect(()=> {
+        console.log("trigger",trigger)
+        console.log("register",register)
+        console.log("errors",errors)
+        console.log("errors.length", errors.length)
+    },[])
 
     return (
         <Container maxWidth="md">
@@ -34,7 +47,7 @@ export const About: React.FC = () => {
                     <StyledH3>Contact us</StyledH3>
 
                     <StyledText color={'black'} fontSize={'16px'} type='text' placeholder='subject'
-                                     {...register('Subject', {required: true, maxLength: 15})} />
+                                     {...register('subject', {required: true, maxLength: 15})} />
                     {errors.subject && <i><b>Field subject is required field no more than 15 symbols</b></i>}
 
                     <StyledText color={'black'} fontSize={'16px'} type='text' placeholder='Age' {...register('age', {required: true, pattern: /\d?\d/, min: 18, max: 99})} />
@@ -43,7 +56,7 @@ export const About: React.FC = () => {
                     <StyledTextarea color={'black'} fontSize={'16px'} placeholder='Message' {...register('message', {required: true})}  />
                     {errors.message && <i><b>Field message is required field</b></i>}
 
-                    <StyledSubmit type="submit">submit</StyledSubmit>
+                    <StyledSubmit type="submit" disabled={!isDirty || Object.keys(errors).length > 0}>submit</StyledSubmit>
                 </StyledForm>
             </div>
         </Container>
