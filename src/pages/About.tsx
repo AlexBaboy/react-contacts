@@ -38,14 +38,14 @@ export const About: React.FC = () => {
                 <StyledForm onSubmit={handleSubmit(onSubmit)}>
                     <StyledH3>Contact us</StyledH3>
 
-                    <StyledText color={'black'} fontSize={'16px'} type='text' placeholder='subject'
+                    <StyledText border={errors.subject ? "2px solid red" : ""}  color={'black'} fontSize={'16px'} type='text' placeholder='subject'
                                      {...register('subject', {required: true, maxLength: 15})} />
                     {errors.subject && <i><b>Field subject is required field no more than 15 symbols</b></i>}
 
-                    <StyledText color={'black'} fontSize={'16px'} type='text' placeholder='Age' {...register('age', {required: true, pattern: /\d?\d/, min: 18, max: 99})} />
+                    <StyledText border={errors.age ? "2px solid red" : ""} color={'black'} fontSize={'16px'} type='text' placeholder='Age' {...register('age', {required: true, pattern: /\d?\d/, min: 18, max: 99})} />
                     {errors.age && <i><b>Field age is required field, min value = 18 and max = 99</b></i>}
 
-                    <StyledTextarea color={'black'} fontSize={'16px'} placeholder='Message' {...register('message', {required: true})}  />
+                    <StyledTextarea border={errors.message ? "2px solid red" : ""} color={'black'} fontSize={'16px'} placeholder='Message' {...register('message', {required: true})}  />
                     {errors.message && <i><b>Field message is required field</b></i>}
 
                     <StyledSubmit type="submit" disabled={!isValid || Object.keys(errors).length > 0}>submit</StyledSubmit>

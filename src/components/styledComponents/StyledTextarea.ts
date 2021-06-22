@@ -4,6 +4,7 @@ export interface StyledTextareaProps {
     color?: string | undefined | null,
     fontSize?: string | undefined | null;
     backgroundColor?: string | undefined | null;
+    border?: string
 };
 
 export const StyledTextarea = styled.textarea<StyledTextareaProps>`
@@ -11,5 +12,5 @@ export const StyledTextarea = styled.textarea<StyledTextareaProps>`
   font-size: ${(props) => props.fontSize || "16px"}; 
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid black;
+  border: ${(props) => props.border || "1px solid black"};
 `;

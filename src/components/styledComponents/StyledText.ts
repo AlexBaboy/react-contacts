@@ -3,7 +3,8 @@ import styled from 'styled-components'
 export interface StyledTextProps {
     fontSize: string | undefined | null;
     backgroundColor?: string | undefined | null;
-    placeholder: string
+    placeholder: string,
+    border?: string
 };
 
 export const StyledText = styled.input<StyledTextProps>`
@@ -11,5 +12,5 @@ export const StyledText = styled.input<StyledTextProps>`
   font-size: ${(props) => props.fontSize || "16px"};
   padding: 10px;
   border-radius: 5px;
-  border: 1px solid black;
+  border: ${(props) => props.border || "1px solid black"};
 `;
