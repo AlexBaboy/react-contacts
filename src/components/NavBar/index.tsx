@@ -8,7 +8,6 @@ import {createStyles, makeStyles} from "@material-ui/core/styles";
 
 import styled from 'styled-components'
 import Container from "@material-ui/core/Container";
-import i18n from "react-i18next";
 import { useTranslation } from "react-i18next";
 
 const NavWrapper = styled.div`
@@ -56,7 +55,7 @@ export const NavBar: React.FC = () => {
                                 <div className="languages">
                                     <span id='ru' onClick={() => changeLanguage("ru")}>RU</span>
                                     <span id='break'>|</span>
-                                    <span id='EN'>EN</span>
+                                    <span id='EN' onClick={() => changeLanguage("en")}>EN</span>
                                 </div>
                             </nav>
 

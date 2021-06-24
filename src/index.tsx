@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import './i18n';
 import { App } from "./App";
 import reportWebVitals from "./reportWebVitals";
 import styled, {createGlobalStyle} from "styled-components";
@@ -23,7 +24,9 @@ const Global = createGlobalStyle`
 ReactDOM.render(
   <React.StrictMode>
     <Global />
-    <App />
+      <Suspense fallback={"loading"}>
+        <App />
+      </Suspense>
   </React.StrictMode>,
   document.getElementById("root")
 );
