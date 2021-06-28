@@ -1,7 +1,27 @@
 {
-  "contact-us": "Свяжитесь с нами",
-  "description": {
-    "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
-    "part2": "Switch language between english and german using buttons above."
+  "header-menu": {
+    "contacts" : "контакты",
+    "about" : "о нас",
+    "info" : "информация"
+  },
+  "headers" : {
+    "about" : "о нас",
+    "info" : "информация"
+  },
+  "form" : {
+    "headers": {
+      "contact us" : "свяжитесь с нами"
+    },
+    "fields" : {
+      "subject" : "тема",
+      "age" : "возраст",
+      "message" : "сообщение",
+      "submit" : "отправить"
+    },
+    "errors" : {
+      "subject" : "Поле ТЕМА является обязательным и не должно превышать 15 символов",
+      "age" : "Поле ВОЗРАСТ является обязательным, минимальное значение = 18, максимальное = 99",
+      "message" : "Поле СООБЩЕНИЕ является обязательным"
+    }
   }
 }

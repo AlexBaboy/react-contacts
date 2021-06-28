@@ -26,14 +26,10 @@ export const About: React.FC = () => {
     console.log("sended:", data);
   };
 
-  const changeLanguage = (language: string) => {
-    i18n.changeLanguage(language);
-  };
-
   return (
     <Suspense fallback={"loading"}>
       <Container maxWidth="md">
-        <StyledH2>About</StyledH2>
+        <StyledH2>{t("headers.about")}</StyledH2>
         <StyledP>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae culpa
           esse iste iure nam nostrum saepe sint ullam? Deserunt dignissimos
@@ -50,22 +46,20 @@ export const About: React.FC = () => {
         </StyledP>
         <div>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
-            <button onClick={() => changeLanguage("ru")}>RU</button>
-            <button onClick={() => changeLanguage("en")}>EN</button>
-            {/*<StyledH3>Contact us</StyledH3>*/}
-            <StyledH3>{t("contact-us")}</StyledH3>
+
+            <StyledH3>{t("form.headers.contact us")}</StyledH3>
 
             <StyledText
               border={errors.subject ? "2px solid red" : ""}
               color={"black"}
               fontSize={"16px"}
               type="text"
-              placeholder="subject"
+              placeholder={t("form.fields.subject")}
               {...register("subject", { required: true, maxLength: 15 })}
             />
             {errors.subject && (
               <i>
-                <b>Field subject is required field no more than 15 symbols</b>
+                <b>{t("form.errors.subject")}</b>
               </i>
             )}
 
@@ -74,7 +68,7 @@ export const About: React.FC = () => {
               color={"black"}
               fontSize={"16px"}
               type="text"
-              placeholder="Age"
+              placeholder={t("form.fields.age")}
               {...register("age", {
                 required: true,
                 pattern: /\d?\d/,
@@ -84,7 +78,7 @@ export const About: React.FC = () => {
             />
             {errors.age && (
               <i>
-                <b>Field age is required field, min value = 18 and max = 99</b>
+                <b>{t("form.errors.age")}</b>
               </i>
             )}
 
@@ -92,12 +86,12 @@ export const About: React.FC = () => {
               border={errors.message ? "2px solid red" : ""}
               color={"black"}
               fontSize={"16px"}
-              placeholder="Message"
+              placeholder={t("form.fields.message")}
               {...register("message", { required: true })}
             />
             {errors.message && (
               <i>
-                <b>Field message is required field</b>
+                <b>{t("form.errors.message")}</b>
               </i>
             )}
 
@@ -105,7 +99,7 @@ export const About: React.FC = () => {
               type="submit"
               disabled={!isValid || Object.keys(errors).length > 0}
             >
-              submit
+              {t("form.fields.submit")}
             </StyledSubmit>
           </StyledForm>
         </div>

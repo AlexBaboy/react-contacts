@@ -1,0 +1,27 @@
+{
+  "header-menu": {
+    "contacts" : "contacts",
+    "about" : "about",
+    "info" : "info"
+  },
+  "headers" : {
+    "about" : "about",
+    "info" : "info"
+  },
+  "form" : {
+    "headers": {
+      "contact us" : "contact us"
+    },
+    "fields" : {
+      "subject" : "subject",
+      "age" : "age",
+      "message" : "message",
+      "submit" : "submit"
+    },
+    "errors" : {
+      "subject" : "Field subject is required field no more than 15 symbols",
+      "age" : "Field age is required field, min value = 18 and max = 99",
+      "message" : "Field message is required field"
+    }
+  }
+}
