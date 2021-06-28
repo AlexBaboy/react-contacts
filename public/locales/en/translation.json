@@ -15,7 +15,9 @@
     "fields" : {
       "subject" : "subject",
       "age" : "age",
-      "message" : "message",
+      "message" : "message"
+    },
+    "buttons" : {
       "submit" : "submit"
     },
     "errors" : {

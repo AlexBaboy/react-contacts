@@ -99,7 +99,7 @@ export const About: React.FC = () => {
               type="submit"
               disabled={!isValid || Object.keys(errors).length > 0}
             >
-              {t("form.fields.submit")}
+              {t("form.buttons.submit")}
             </StyledSubmit>
           </StyledForm>
         </div>

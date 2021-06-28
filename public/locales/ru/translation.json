@@ -15,7 +15,9 @@
     "fields" : {
       "subject" : "тема",
       "age" : "возраст",
-      "message" : "сообщение",
+      "message" : "сообщение"
+    },
+    "buttons" : {
       "submit" : "отправить"
     },
     "errors" : {
