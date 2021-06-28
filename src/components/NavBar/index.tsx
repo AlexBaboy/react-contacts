@@ -11,6 +11,9 @@ import Container from "@material-ui/core/Container";
 import { useTranslation } from "react-i18next";
 import {StyledNavLan} from "../ui/StyledNavLan";
 import {StyledLanSwitch} from "../ui/StyledLanSwitch";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../store";
+import {setAtiveLanguage} from "../../store/contacts";
 
 const NavWrapper = styled.div`
   padding-top: 2rem;
@@ -19,6 +22,10 @@ const NavWrapper = styled.div`
 export const NavBar: React.FC = () => {
 
     const { t, i18n } = useTranslation();
+
+    const dispatch = useDispatch()
+
+    const language = useSelector( (state: RootState) => state.toolkit.language)
 
     const useStyles = makeStyles((theme) =>
         createStyles({
@@ -33,8 +40,9 @@ export const NavBar: React.FC = () => {
 
     const classes = useStyles();
 
-    const changeLanguage = (language: string) => {
+    const changeLanguage = (language: string): void => {
         i18n.changeLanguage(language);
+        dispatch(setAtiveLanguage(language))
     };
 
     return (
@@ -44,9 +52,9 @@ export const NavBar: React.FC = () => {
                 <nav>
 
                     <StyledNavLan>
-                        <StyledLanSwitch id='EN' onClick={() => changeLanguage("en")}>EN</StyledLanSwitch>
+                        <StyledLanSwitch className={language === "en" ? "active-lan" : ""} id='EN' onClick={() => changeLanguage("en")}>EN</StyledLanSwitch>
                         <span id='break'>|</span>
-                        <StyledLanSwitch id='ru' onClick={() => changeLanguage("ru")}>RU</StyledLanSwitch>
+                        <StyledLanSwitch className={language === "ru" ? "active-lan" : ""} id='ru' onClick={(e) => changeLanguage("ru")}>RU</StyledLanSwitch>
                     </StyledNavLan>
                 </nav>
             </NavWrapper>

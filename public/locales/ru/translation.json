@@ -37,6 +37,9 @@
         "location": "Адрес",
         "nationality": "Национальность"
       }
+    },
+    "filter" : {
+      "by location or nationality" : "Поиск по адресу или национальности"
     }
   }
 }

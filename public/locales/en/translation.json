@@ -21,9 +21,9 @@
       "submit" : "submit"
     },
     "errors" : {
-      "subject" : "Field subject is required field no more than 15 symbols",
-      "age" : "Field age is required field, min value = 18 and max = 99",
-      "message" : "Field message is required field"
+      "subject" : "Field SUBJECT is required field no more than 15 symbols",
+      "age" : "Field AGE is required field, min value = 18 and max = 99",
+      "message" : "Field MESSAGE is required field"
     }
   },
   "contacts" : {
@@ -35,8 +35,11 @@
         "email": "Email",
         "phone": "Phone",
         "location": "Location",
-        "nationality": "nationality"
+        "nationality": "Nationality"
       }
+    },
+    "filter" : {
+      "by location or nationality" : "Filter by location or nationality"
     }
   }
 }

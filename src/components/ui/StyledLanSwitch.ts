@@ -12,4 +12,8 @@ export const StyledLanSwitch = styled.span<StyledLanSwitchProps>`
     text-decoration: underline;
     cursor: pointer;
   }
+  &.active-lan {
+    font-weight: bold;
+    text-decoration: underline;
+  }
 `

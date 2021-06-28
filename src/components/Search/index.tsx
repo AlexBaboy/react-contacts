@@ -3,8 +3,12 @@ import TextField from "@material-ui/core/TextField";
 import { setDebouncedFilterData } from "../../store/contacts";
 import { useDispatch } from "react-redux";
 import { useDebouncedCallback } from "use-debounce";
+import {useTranslation} from "react-i18next";
 
 export const Search = () => {
+
+  const {t} = useTranslation()
+
   const dispatch = useDispatch();
 
   const debouncedFilterData = useDebouncedCallback(
@@ -14,7 +18,7 @@ export const Search = () => {
 
   return (
     <TextField
-      label="filter by location or nationality"
+      label={t("contacts.filter.by location or nationality")}
       margin="normal"
       variant="outlined"
       fullWidth

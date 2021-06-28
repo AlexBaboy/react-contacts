@@ -18,6 +18,7 @@ interface IContactsState {
   currentPage: number;
   contactsPerPage: number;
   exceptionText: string;
+  language: string
 }
 
 const contactsInitialState: IContactsState = {
@@ -28,6 +29,7 @@ const contactsInitialState: IContactsState = {
   currentPage: 1,
   contactsPerPage: 10,
   exceptionText: "",
+  language: "en"
 };
 
 const contactsSlice = createSlice({
@@ -41,6 +43,9 @@ const contactsSlice = createSlice({
     setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
+    setAtiveLanguage(state, action: PayloadAction<string>) {
+      state.language = action.payload
+    }
   },
 
   extraReducers: (builder) => {
@@ -62,4 +67,4 @@ const contactsSlice = createSlice({
 });
 
 export default contactsSlice.reducer;
-export const { setDebouncedFilterData, setCurrentPage } = contactsSlice.actions;
+export const { setDebouncedFilterData, setCurrentPage, setAtiveLanguage } = contactsSlice.actions;
