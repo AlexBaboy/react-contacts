@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 import { getCurrentContacts } from "../../../components/Selectors";
 import {ToggleDataViewMode} from "../ToggleDataViewMode";
 import {useDataViewMode} from "../useDataViewMode";
+import {useTranslation} from "react-i18next";
 
 const useStyles = makeStyles({
   table: {
@@ -26,6 +27,9 @@ const useStyles = makeStyles({
 });
 
 export const ContactsTable = () => {
+
+  const { t, i18n } = useTranslation();
+
   const classes = useStyles();
   const contactList = useSelector(getCurrentContacts);
   const [dataViewMode, setDataViewMode] = useDataViewMode();
@@ -40,13 +44,13 @@ export const ContactsTable = () => {
       <Table className={classes.table} aria-label="contacts table">
         <TableHead>
           <TableRow>
-            <TableCell>Avatar</TableCell>
-            <TableCell>Full name</TableCell>
-            <TableCell>Birthday</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Phone</TableCell>
-            <TableCell>Location</TableCell>
-            <TableCell>Nationality</TableCell>
+            <TableCell>{t("contacts.table.headers.avatar")}</TableCell>
+            <TableCell>{t("contacts.table.headers.full name")}</TableCell>
+            <TableCell>{t("contacts.table.headers.birthday")}</TableCell>
+            <TableCell>{t("contacts.table.headers.email")}</TableCell>
+            <TableCell>{t("contacts.table.headers.phone")}</TableCell>
+            <TableCell>{t("contacts.table.headers.location")}</TableCell>
+            <TableCell>{t("contacts.table.headers.nationality")}</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

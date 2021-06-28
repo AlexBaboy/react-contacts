@@ -25,5 +25,18 @@
       "age" : "Field age is required field, min value = 18 and max = 99",
       "message" : "Field message is required field"
     }
+  },
+  "contacts" : {
+    "table" : {
+      "headers": {
+        "avatar" : "Avatar",
+        "full name": "Full name",
+        "birthday": "Birthday",
+        "email": "Email",
+        "phone": "Phone",
+        "location": "Location",
+        "nationality": "nationality"
+      }
+    }
   }
 }
