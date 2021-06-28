@@ -4,14 +4,24 @@ import Container from "@material-ui/core/Container";
 import { StyledP } from "../components/ui/StyledP";
 import { useForm } from "react-hook-form";
 import { StyledText } from "../components/ui/StyledText";
+import { StyledEmail } from "../components/ui/StyledEmail";
 import { StyledForm } from "../components/ui/StyledForm";
 import { StyledH3 } from "../components/ui/StyledH3";
 import { StyledTextarea } from "../components/ui/StyledTextarea";
 import { StyledSubmit } from "../components/ui/StyledSubmit";
 import { useTranslation } from "react-i18next";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const About: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
+
+  const schema = yup.object({
+    subject: yup.string().required(t("form.errors.subject")).max(15),
+    age: yup.number().required(t("form.errors.age")).min(18).max(99),
+    email: yup.string().required(t("form.errors.email")).email(),
+    message: yup.string().required(t("form.errors.message")),
+  });
 
   const {
     register,
@@ -20,6 +30,7 @@ export const About: React.FC = () => {
   } = useForm({
     mode: "onTouched",
     reValidateMode: "onSubmit",
+    resolver: yupResolver(schema),
   });
 
   const onSubmit = (data: any) => {
@@ -46,7 +57,6 @@ export const About: React.FC = () => {
         </StyledP>
         <div>
           <StyledForm onSubmit={handleSubmit(onSubmit)}>
-
             <StyledH3>{t("form.headers.contact us")}</StyledH3>
 
             <StyledText
@@ -55,8 +65,9 @@ export const About: React.FC = () => {
               fontSize={"16px"}
               type="text"
               placeholder={t("form.fields.subject")}
-              {...register("subject", { required: true, maxLength: 15 })}
+              {...register("subject")}
             />
+            {/*//, { required: true, maxLength: 15 })}*/}
             {errors.subject && (
               <i>
                 <b>{t("form.errors.subject")}</b>
@@ -69,16 +80,25 @@ export const About: React.FC = () => {
               fontSize={"16px"}
               type="text"
               placeholder={t("form.fields.age")}
-              {...register("age", {
-                required: true,
-                pattern: /\d?\d/,
-                min: 18,
-                max: 99,
-              })}
+              {...register("age")}
             />
             {errors.age && (
               <i>
                 <b>{t("form.errors.age")}</b>
+              </i>
+            )}
+
+            <StyledEmail
+              border={errors.email ? "2px solid red" : ""}
+              color={"black"}
+              fontSize={"16px"}
+              type="text"
+              placeholder={t("form.fields.email")}
+              {...register("email")}
+            />
+            {errors.email && (
+              <i>
+                <b>{t("form.errors.email")}</b>
               </i>
             )}
 
@@ -87,7 +107,7 @@ export const About: React.FC = () => {
               color={"black"}
               fontSize={"16px"}
               placeholder={t("form.fields.message")}
-              {...register("message", { required: true })}
+              {...register("message")}
             />
             {errors.message && (
               <i>

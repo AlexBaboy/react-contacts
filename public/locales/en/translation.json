@@ -15,6 +15,7 @@
     "fields" : {
       "subject" : "subject",
       "age" : "age",
+      "email" : "email",
       "message" : "message"
     },
     "buttons" : {
@@ -23,6 +24,7 @@
     "errors" : {
       "subject" : "Field SUBJECT is required field no more than 15 symbols",
       "age" : "Field AGE is required field, min value = 18 and max = 99",
+      "email" : "Enter the correct EMAIL",
       "message" : "Field MESSAGE is required field"
     }
   },
