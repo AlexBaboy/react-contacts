@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setContactsInitial } from "../../store/contacts";
 import { Search } from "../../components/Search";
 import { RootState } from "../../store";
+import {ToggleDataViewMode} from "./ToggleDataViewMode";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -57,7 +58,11 @@ export const Contacts = () => {
             if (dataViewMode === DATA_VIEW_MODES.TABLE)
               return (
                 <>
-                    <div data-testid="table-container">{dataViewMode}</div>
+                    <div data-testid="table-container"></div>
+                    <ToggleDataViewMode
+                        dataViewMode={dataViewMode}
+                        setDataViewMode={setDataViewMode}
+                    />
                   <ContactsTable />
                   <Pagination />
                 </>
@@ -65,9 +70,12 @@ export const Contacts = () => {
             if (dataViewMode === DATA_VIEW_MODES.GRID)
               return (
                   <>
-                      <div data-testid="grid-container">{dataViewMode}</div>
-                      <ContactsTable />
-                      <Pagination />
+                      <div data-testid="grid-container"></div>
+                      <ToggleDataViewMode
+                          dataViewMode={dataViewMode}
+                          setDataViewMode={setDataViewMode}
+                      />
+
                   </>
               );
               return null;

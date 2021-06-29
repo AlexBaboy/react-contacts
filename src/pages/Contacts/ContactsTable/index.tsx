@@ -36,10 +36,7 @@ export const ContactsTable = () => {
   return (
     <TableContainer component={Paper} data-testid="table-container">
 
-      <ToggleDataViewMode
-          dataViewMode={dataViewMode}
-          setDataViewMode={setDataViewMode}
-      />
+
 
       <Table className={classes.table} aria-label="contacts table">
         <TableHead>

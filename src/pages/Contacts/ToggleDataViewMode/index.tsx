@@ -19,7 +19,6 @@ export const ToggleDataViewMode: React.FC<ToggleDataViewModeProps> = ({
   const handleChange = useCallback(
     (_, nextView: string) => {
       setDataViewMode(nextView);
-      console.log("nextView", nextView)
     },
     [setDataViewMode]
   );
