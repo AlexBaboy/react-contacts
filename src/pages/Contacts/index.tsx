@@ -75,7 +75,7 @@ export const Contacts = () => {
                           dataViewMode={dataViewMode}
                           setDataViewMode={setDataViewMode}
                       />
-
+                        <div>Grid view not implemented yet</div>
                   </>
               );
               return null;

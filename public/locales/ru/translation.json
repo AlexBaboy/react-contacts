@@ -43,5 +43,10 @@
     "filter" : {
       "by location or nationality" : "Поиск по адресу или национальности"
     }
+  },
+  "route" : {
+    "errors" : {
+      "no such page" : "Такой страницы не существует!"
+    }
   }
 }

@@ -11,18 +11,21 @@ import { ErrorPage } from "./pages/ErrorPage";
 export const App: React.FC = () => {
   return (
 
-
+      <Provider store={store}>
         <BrowserRouter>
-          <Switch>
-            <Provider store={store}>
             <NavBar />
+
+
+            <Switch>
             <Route path="/"  component={Contacts} exact />
             <Route path="/info" component={Info}  exact />
             <Route path="/about" component={About} exact />
-            {/*<Route path="*"  component={ErrorPage} exact />*/}
-            </Provider>
-        </Switch>
+            <Route path="*"  component={ErrorPage} exact />
+            </Switch>
+
+
         </BrowserRouter>
+      </Provider>
 
   );
 };

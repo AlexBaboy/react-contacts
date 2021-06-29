@@ -43,5 +43,10 @@
     "filter" : {
       "by location or nationality" : "Filter by location or nationality"
     }
+  },
+  "route" : {
+    "errors" : {
+      "no such page" : "No such page!"
+    }
   }
 }
