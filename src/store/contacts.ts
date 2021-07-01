@@ -5,7 +5,11 @@ import { Contact } from "../Interfaces/Contact";
 export const setContactsInitial = createAsyncThunk(
   "contacts/setContactsInitial",
   async (searchId, { getState, requestId }) => {
-    const response = await axios.get("https://randomuser.me/api/?results=200");
+    const response = await axios.get("https://randomuser.me/api/?results=200")/*, {
+      headers: {
+        'Authorization' : `Basic ${Date.now()}`
+      }
+    });*/
     return response?.data?.results;
   }
 );

@@ -2,6 +2,7 @@
   "name": "contacts",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://randomuser.me/api/?results=200",
   "dependencies": {
     "@hookform/resolvers": "^2.6.0",
     "@material-ui/core": "^4.11.2",
