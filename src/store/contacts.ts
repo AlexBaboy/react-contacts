@@ -5,7 +5,9 @@ import { Contact } from "../Interfaces/Contact";
 export const setContactsInitial = createAsyncThunk(
   "contacts/setContactsInitial",
   async (searchId, { getState, requestId }) => {
-    const response = await axios.get("https://randomuser.me/api/?results=200")/*, {
+    const response = await axios.get(
+      "https://randomuser.me/api/?results=200"
+    ); /*, {
       headers: {
         'Authorization' : `Basic ${Date.now()}`
       }
@@ -22,7 +24,7 @@ interface IContactsState {
   currentPage: number;
   contactsPerPage: number;
   exceptionText: string;
-  language: string
+  language: string;
 }
 
 const contactsInitialState: IContactsState = {
@@ -33,7 +35,7 @@ const contactsInitialState: IContactsState = {
   currentPage: 1,
   contactsPerPage: 10,
   exceptionText: "",
-  language: "en"
+  language: "ru",
 };
 
 const contactsSlice = createSlice({
@@ -48,8 +50,8 @@ const contactsSlice = createSlice({
       state.currentPage = action.payload;
     },
     setAtiveLanguage(state, action: PayloadAction<string>) {
-      state.language = action.payload
-    }
+      state.language = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -71,4 +73,8 @@ const contactsSlice = createSlice({
 });
 
 export default contactsSlice.reducer;
-export const { setDebouncedFilterData, setCurrentPage, setAtiveLanguage } = contactsSlice.actions;
+export const {
+  setDebouncedFilterData,
+  setCurrentPage,
+  setAtiveLanguage,
+} = contactsSlice.actions;
